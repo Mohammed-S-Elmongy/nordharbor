@@ -1,1 +1,21 @@
+# Dependencies
+node_modules/
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Build outputs
+.next/
+dist/
+build/
+coverage/
+
+# Local development files
+*.log
+.DS_Store
+
+# Editor-specific local settings
 .vscode/

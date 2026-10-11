@@ -60,6 +60,18 @@ NordHarbor will prioritize high cohesion, low coupling, clear responsibility bou
 
 **Success criteria:** Visitors can discover and enjoy photography easily, understand how to purchase licenses when interested, and experience a polished, responsive website.
 
+### Decision 003: Full-resolution edited image delivery
+
+**Status:** Accepted
+
+**Decision:** The initial platform will deliver full-resolution photographer-edited images to licensed customers. Original RAW files remain private.
+
+**Why:** Provide customers with finished photographs suitable for permitted personal uses while retaining original source files and maintaining a straightforward initial licensing workflow.
+
+**Future evolution:** Support alternative photographer edits, RAW purchases and AI-assisted variations when appropriate.
+
+
+
 ### Decision 004: Security-first engineering and practical security testing
 
 **Status:** Accepted
@@ -105,3 +117,20 @@ NordHarbor will prioritize high cohesion, low coupling, clear responsibility bou
 **Why:** Support realistic commercial use cases without introducing unnecessary licensing and royalty-management infrastructure.
 
 **Future evolution:** Automated commercial and extended licensing may be introduced if justified by future requirements.
+
+
+### Decision 007: Monorepo with feature-based applications
+
+**Status:** Accepted
+
+**Decision:** NordHarbor will use one Git repository with separate frontend and backend applications under `apps/web` and `apps/api`.
+
+**Why:** Keep the full engineering project accessible in one place while maintaining clear application responsibilities, high cohesion, low coupling and understandable data flow.
+
+**Initial tooling:** Native npm workspaces without additional monorepo frameworks.
+
+**Architecture:** Organize internal application code primarily by business feature. Keep controllers, services, database access and related tests appropriately grouped.
+
+**Trade-off:** Frontend and backend share repository tooling and change history but retain separate build, runtime and deployment responsibilities.
+
+**Future evolution:** Introduce shared packages or more advanced monorepo tooling only when justified by actual needs.

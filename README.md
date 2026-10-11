@@ -1,10 +1,12 @@
 # NordHarbor
 
-NordHarbor is a full-stack photography platform and learning project.
+NordHarbor is a full-stack photography portfolio and digital licensing platform, built as a hands-on software engineering learning project.
 
-The goal is to build a real, production-ready website where photographers can showcase and eventually sell licenses for their full-resolution images.
+The first release focuses on a single photographer, with a cinematic photography-first experience, digital image licensing, and a complete test-payment and secure-download workflow.
 
-This project is also being used to deepen my understanding of modern full-stack development by building the system step by step instead of generating the entire application at once.
+The long-term goal is to explore how the architecture can evolve into a scalable multi-photographer marketplace.
+
+The project emphasizes readable and maintainable code, thoughtful system design, security, testing, deployment, and learning the underlying technologies rather than relying on AI-generated implementations.
 
 ## Planned areas
 
