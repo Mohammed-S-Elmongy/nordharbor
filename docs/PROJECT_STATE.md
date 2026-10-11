@@ -72,3 +72,19 @@ Review and synchronize project documentation, prepare the repository for a TypeS
 ## Exact next step
 
 Create the initial `apps/web` and `apps/api` directories and configure a minimal root npm workspace, understanding each change before generating framework applications.
+
+## Development workflow
+
+- Use VS Code GUI for creating files and folders, staging, committing and pushing.
+- Use the WSL terminal for package management, application execution, Docker, databases and meaningful command-line learning.
+- Explain unfamiliar commands, syntax and framework concepts before using them.
+- Implement features manually with ChatGPT acting as mentor and reviewer.
+- Favor readable code, high cohesion, low coupling and traceable data flow.
+
+## Next session
+
+1. Create the initial `apps/web` and `apps/api` directories.
+2. Learn the fundamentals of npm workspaces.
+3. Configure the root `package.json`.
+4. Validate the workspace structure.
+5. Begin minimal framework setup, one application at a time.
