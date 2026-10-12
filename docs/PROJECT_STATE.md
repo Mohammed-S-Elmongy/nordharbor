@@ -10,6 +10,25 @@ Build a photography-first digital licensing platform as a practical full-stack s
 
 The first release will support a single photographer. The architecture will be designed and evolved deliberately to learn scalability, maintainability, security and production engineering.
 
+## MVP access rules
+
+- Anonymous visitors may browse galleries and save reduced-resolution previews.
+- Customer registration and authentication are required for purchasing licenses.
+- Full-resolution edited downloads require a completed purchase and backend authorization.
+- Original RAW files remain private.
+- Payments will initially operate in test mode.
+- Commercial and resale licensing requests will be handled through direct inquiry.
+
+## Initial implementation
+
+**Vertical slice 001: Public photo gallery**
+
+Build a read-only gallery using Next.js and NestJS, initially backed by hardcoded photo metadata.
+
+Then evolve the feature to use PostgreSQL and appropriate image storage.
+
+**Next step:** Configure the npm monorepo and initialize the frontend/backend applications.
+
 ## Development environment
 
 - Windows 11 with WSL Ubuntu

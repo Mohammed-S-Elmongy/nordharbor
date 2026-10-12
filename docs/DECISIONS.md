@@ -134,3 +134,25 @@ NordHarbor will prioritize high cohesion, low coupling, clear responsibility bou
 **Trade-off:** Frontend and backend share repository tooling and change history but retain separate build, runtime and deployment responsibilities.
 
 **Future evolution:** Introduce shared packages or more advanced monorepo tooling only when justified by actual needs.
+
+### Decision 008: Public previews and account-based licensed downloads
+
+**Status:** Accepted
+
+**Decision:** Public visitors may browse and save reduced-resolution photograph previews without an account.
+
+Registered customers may purchase digital licenses and access full-resolution edited photographs they have purchased.
+
+**Security approach:**
+- Publicly serve optimized, reduced-resolution previews.
+- Keep full-resolution images in private storage.
+- Require authentication for accessing customer purchases.
+- Verify purchase ownership and download permissions on the backend.
+- Use temporary authorized downloads where appropriate.
+- Do not rely on disabling right-click or preventing screenshots for security.
+
+**Why:** Provide an accessible photography-first browsing experience while demonstrating authentication, authorization, secure digital delivery and practical web security.
+
+**Trade-off:** Customer accounts introduce additional authentication, account management and personal-data responsibilities.
+
+**Future evolution:** Guest checkout may be introduced later if reducing purchasing friction becomes a priority.
