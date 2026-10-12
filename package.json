@@ -1,8 +1,16 @@
 {
-    "name": "nordharbor",
-    "version": "1.0.0",
-    "private": true,
-    "workspaces": [
-        "apps/*"
-    ]
+  "name": "nordharbor",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "web": "npm run dev --workspace=@nordharbor/web",
+    "api": "npm run start:dev --workspace=@nordharbor/api",
+    "apps": "concurrently \"npm run web\" \"npm run api\""
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
 }
