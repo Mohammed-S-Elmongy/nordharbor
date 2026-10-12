@@ -19,16 +19,6 @@ The first release will support a single photographer. The architecture will be d
 - Payments will initially operate in test mode.
 - Commercial and resale licensing requests will be handled through direct inquiry.
 
-## Initial implementation
-
-**Vertical slice 001: Public photo gallery**
-
-Build a read-only gallery using Next.js and NestJS, initially backed by hardcoded photo metadata.
-
-Then evolve the feature to use PostgreSQL and appropriate image storage.
-
-**Next step:** Configure the npm monorepo and initialize the frontend/backend applications.
-
 ## Development environment
 
 - Windows 11 with WSL Ubuntu
@@ -84,13 +74,6 @@ nordharbor/
 - Hosting and deployment architecture
 - CI/CD configuration
 
-## Current task
-
-Review and synchronize project documentation, prepare the repository for a TypeScript monorepo, and understand npm workspaces.
-
-## Exact next step
-
-Create the initial `apps/web` and `apps/api` directories and configure a minimal root npm workspace, understanding each change before generating framework applications.
 
 ## Development workflow
 
@@ -100,10 +83,41 @@ Create the initial `apps/web` and `apps/api` directories and configure a minimal
 - Implement features manually with ChatGPT acting as mentor and reviewer.
 - Favor readable code, high cohesion, low coupling and traceable data flow.
 
+## Initial implementation
+
+**Vertical slice 001: Public photo gallery**
+
+Build a read-only gallery using Next.js and NestJS, initially backed by hardcoded photo metadata.
+
+Then evolve the feature to use PostgreSQL and appropriate image storage.
+
+**Current implementation status:**
+
+- npm workspaces monorepo configured.
+- `apps/web` initialized with Next.js, React and TypeScript.
+- `apps/api` initialized with NestJS, TypeScript and ESM.
+- Root development scripts added for starting web, API, or both applications.
+- Next.js runs on port `3000`.
+- NestJS API runs on port `3001`.
+- Swagger/OpenAPI documentation is available from the API.
+- Production dependency audit currently reports zero known vulnerabilities.
+
+## Current task
+
+Begin vertical slice 001 by implementing the first real backend feature using NestJS feature modules.
+
+## Exact next step
+
+Create a `PhotosModule` with its own controller and service, then expose a read-only `GET /photos` endpoint backed by hardcoded photo metadata.
+
+Use this first feature to practice NestJS module boundaries, dependency injection, controller/service responsibilities and Swagger documentation before introducing PostgreSQL.
+
 ## Next session
 
-1. Create the initial `apps/web` and `apps/api` directories.
-2. Learn the fundamentals of npm workspaces.
-3. Configure the root `package.json`.
-4. Validate the workspace structure.
-5. Begin minimal framework setup, one application at a time.
+1. Create `PhotosModule`.
+2. Add `PhotosController`.
+3. Add `PhotosService`.
+4. Register `PhotosModule` in `AppModule`.
+5. Return hardcoded photo metadata from `GET /photos`.
+6. Document the endpoint in Swagger.
+7. Test the endpoint in Swagger and Postman.
