@@ -96,28 +96,69 @@ Then evolve the feature to use PostgreSQL and appropriate image storage.
 - npm workspaces monorepo configured.
 - `apps/web` initialized with Next.js, React and TypeScript.
 - `apps/api` initialized with NestJS, TypeScript and ESM.
-- Root development scripts added for starting web, API, or both applications.
+- Root development scripts start the web app, API, or both applications together.
 - Next.js runs on port `3000`.
 - NestJS API runs on port `3001`.
 - Swagger/OpenAPI documentation is available from the API.
 - Production dependency audit currently reports zero known vulnerabilities.
+- `PhotosModule` is implemented as the first real NestJS feature module.
+- `PhotosController` handles the public photo HTTP routes.
+- `PhotosService` owns the temporary hardcoded photo data and lookup/filtering logic.
+- `GET /photos` returns all photo metadata.
+- `GET /photos?category=...` filters the photo collection case-insensitively.
+- `GET /photos/:slug` returns an individual photo.
+- Unknown photo slugs return `404 Not Found`.
+- Empty category filters return an empty collection rather than `404`.
+- Photo metadata currently uses Instagram post URLs as temporary external references while the real preview/storage architecture remains intentionally deferred.
 
 ## Current task
 
-Begin vertical slice 001 by implementing the first real backend feature using NestJS feature modules.
+Continue vertical slice 001 by connecting the Next.js frontend to the public Photos API.
+
+The backend photo endpoints are functional enough to support the first real frontend page.
 
 ## Exact next step
 
-Create a `PhotosModule` with its own controller and service, then expose a read-only `GET /photos` endpoint backed by hardcoded photo metadata.
+Create the Next.js `/photos` route and fetch photo metadata from:
 
-Use this first feature to practice NestJS module boundaries, dependency injection, controller/service responsibilities and Swagger documentation before introducing PostgreSQL.
+```text
+GET http://localhost:3001/photos
+```
+
+Use the first frontend integration to learn:
+
+- Next.js App Router page structure
+- Server Components
+- server-side data fetching
+- frontend TypeScript data shapes
+- loading/error behavior
+- rendering a basic photo collection
+
+Do not attempt the final gallery design yet.
+
+First prove the end-to-end data flow from NestJS to Next.js.
+
+After the basic frontend connection works, continue with `/photos/[slug]`.
+
+## Near-term follow-up
+
+Before considering the Photos API contract complete, perform a focused Swagger/OpenAPI documentation pass:
+
+- add meaningful API tags
+- add endpoint summaries and descriptions
+- document optional query parameters
+- document path parameters
+- document success responses
+- document expected `404` responses
+- introduce response DTO classes where useful for OpenAPI schemas
+- add representative examples
 
 ## Next session
 
-1. Create `PhotosModule`.
-2. Add `PhotosController`.
-3. Add `PhotosService`.
-4. Register `PhotosModule` in `AppModule`.
-5. Return hardcoded photo metadata from `GET /photos`.
-6. Document the endpoint in Swagger.
-7. Test the endpoint in Swagger and Postman.
+1. Review the generated Next.js App Router structure.
+2. Create the `/photos` page.
+3. Fetch `GET /photos` from the NestJS API.
+4. Render the returned metadata with minimal markup.
+5. Add basic loading/error handling as appropriate.
+6. Confirm the full flow from Next.js → NestJS → `PhotosService`.
+7. Then begin `/photos/[slug]`.

@@ -198,8 +198,8 @@ Example photo metadata may include:
 
 ## Done when
 
-- [ ] `GET /photos` returns photo metadata
-- [ ] `GET /photos/:slug` returns one photograph
+- [x] `GET /photos` returns photo metadata
+- [x] `GET /photos/:slug` returns one photograph
 - [ ] Swagger documents both endpoints
 - [ ] `/photos` displays data from the API
 - [ ] `/photos/[slug]` displays a real detail page
@@ -825,12 +825,12 @@ Phase 0 - Foundation
 ████████████████████  DONE
 
 Phase 1 - Public photography experience
-░░░░░░░░░░░░░░░░░░░░  NEXT
+██████░░░░░░░░░░░░░░  IN PROGRESS
 ```
 
-## Exact next step
+## Completed in Phase 1 so far
 
-Create the first real backend feature:
+The first backend feature is functional:
 
 ```text
 PhotosModule
@@ -840,13 +840,35 @@ PhotosController
 PhotosService
 ↓
 GET /photos
+GET /photos?category=...
+GET /photos/:slug
 ↓
 hardcoded photo metadata
-↓
-Swagger documentation
 ```
 
-Then connect the Next.js `/photos` page to that endpoint.
+Individual missing resources return `404 Not Found`.
+
+Filtered collections with no matches return an empty array.
+
+Swagger/OpenAPI discovers the endpoints, but richer API documentation remains a planned Phase 1 task.
+
+## Exact next step
+
+Connect the frontend to the backend:
+
+```text
+Next.js /photos
+↓
+server-side fetch
+↓
+NestJS GET /photos
+↓
+PhotosService
+↓
+render photo metadata
+```
+
+After the collection page works, implement the dynamic `/photos/[slug]` page.
 
 ---
 
