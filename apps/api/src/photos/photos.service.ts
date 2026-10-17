@@ -37,7 +37,7 @@ export class PhotosService {
       description: "A majestic Nordic lynx in its natural habitat.",
       instagramUrl:
         "https://www.instagram.com/p/Db1ObPIOVlj/?utm_source=ig_web_copy_link&cplk=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
-      category: "wildlife",
+      category: "notwildlifetest",
       location: "Norway",
       camera: "Canon EOS R10",
       lens: "CANON RF 100-400mm f/4.5-5.6 L IS USM",
@@ -60,13 +60,17 @@ export class PhotosService {
   }
 
   getPhotosByCategory(category: string): Photo[] {
+  
     if (category.toLowerCase().trim() === "all") {
       return this.getPhotos();
     }
-    return this.photos.filter(
+
+    const photos = this.photos.filter(
       (photo) =>
         photo.category.toLowerCase().trim() ===
         category.toLowerCase().trim(),
     );
+    
+    return photos;
   }
 }
