@@ -2,7 +2,7 @@
 
 ## Current phase
 
-Architecture planning and initial repository setup.
+Phase 1: Public photography experience.
 
 ## Project goal
 
@@ -111,14 +111,6 @@ Then evolve the feature to use PostgreSQL and appropriate image storage.
 - Empty category filters return an empty collection rather than `404`.
 - Photo metadata currently uses Instagram post URLs as temporary external references while the real preview/storage architecture remains intentionally deferred.
 
-## Current task
-
-Complete the API contract for vertical slice 001 using DTO classes and richer Swagger/OpenAPI documentation.
-
-The first frontend/backend connection is now working.
-
-## Current implementation status
-
 In addition to the existing backend Photos feature:
 
 - Next.js `/photos` fetches photo metadata from the NestJS API.
@@ -129,6 +121,14 @@ In addition to the existing backend Photos feature:
 - Empty filtered collections render a normal empty state.
 - Missing individual photo resources remain a separate `404` concern.
 - Duplicate frontend fetch logic has been removed.
+
+---
+
+## Current task
+
+Complete the API contract for vertical slice 001 using DTO classes and richer Swagger/OpenAPI documentation.
+
+The first frontend/backend connection is now working.
 
 ## Exact next step
 
@@ -158,13 +158,3 @@ Before considering the Photos API contract complete, perform a focused Swagger/O
 - document expected `404` responses
 - introduce response DTO classes where useful for OpenAPI schemas
 - add representative examples
-
-## Next session
-
-1. Review the generated Next.js App Router structure.
-2. Create the `/photos` page.
-3. Fetch `GET /photos` from the NestJS API.
-4. Render the returned metadata with minimal markup.
-5. Add basic loading/error handling as appropriate.
-6. Confirm the full flow from Next.js → NestJS → `PhotosService`.
-7. Then begin `/photos/[slug]`.

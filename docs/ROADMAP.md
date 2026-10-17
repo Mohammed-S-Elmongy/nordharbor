@@ -201,7 +201,7 @@ Example photo metadata may include:
 - [x] `GET /photos` returns photo metadata
 - [x] `GET /photos/:slug` returns one photograph
 - [ ] Swagger documents both endpoints
-- [ ] `/photos` displays data from the API
+- [x] `/photos` displays data from the API
 - [x] `/photos/[slug]` displays a real detail page
 - [x] categories can filter or group photos
 - [ ] homepage contains real photography content
@@ -854,21 +854,13 @@ Swagger/OpenAPI discovers the endpoints, but richer API documentation remains a 
 
 ## Exact next step
 
-Connect the frontend to the backend:
-
-```text
-Next.js /photos
+Photo DTO
 ↓
-server-side fetch
+Swagger response schemas
 ↓
-NestJS GET /photos
+endpoint documentation
 ↓
-PhotosService
-↓
-render photo metadata
-```
-
-After the collection page works, implement the dynamic `/photos/[slug]` page.
+API contract complete enough for PostgreSQL
 
 ---
 
