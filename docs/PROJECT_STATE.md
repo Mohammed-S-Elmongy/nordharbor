@@ -113,34 +113,40 @@ Then evolve the feature to use PostgreSQL and appropriate image storage.
 
 ## Current task
 
-Continue vertical slice 001 by connecting the Next.js frontend to the public Photos API.
+Complete the API contract for vertical slice 001 using DTO classes and richer Swagger/OpenAPI documentation.
 
-The backend photo endpoints are functional enough to support the first real frontend page.
+The first frontend/backend connection is now working.
+
+## Current implementation status
+
+In addition to the existing backend Photos feature:
+
+- Next.js `/photos` fetches photo metadata from the NestJS API.
+- Next.js `/photos/[slug]` fetches an individual photo by slug.
+- Internal navigation between collection and detail pages works using Next.js `Link`.
+- `/photos?category=...` forwards category filtering to the NestJS API.
+- Category values are URL-encoded before being added to the API request.
+- Empty filtered collections render a normal empty state.
+- Missing individual photo resources remain a separate `404` concern.
+- Duplicate frontend fetch logic has been removed.
 
 ## Exact next step
 
-Create the Next.js `/photos` route and fetch photo metadata from:
+Introduce DTO classes and improve Swagger/OpenAPI documentation for the Photos API.
 
-```text
-GET http://localhost:3001/photos
-```
+Focus on:
 
-Use the first frontend integration to learn:
+- runtime DTO classes
+- response schemas
+- `@ApiTags`
+- `@ApiOperation`
+- `@ApiQuery`
+- `@ApiParam`
+- `@ApiOkResponse`
+- `@ApiNotFoundResponse`
+- representative examples
 
-- Next.js App Router page structure
-- Server Components
-- server-side data fetching
-- frontend TypeScript data shapes
-- loading/error behavior
-- rendering a basic photo collection
-
-Do not attempt the final gallery design yet.
-
-First prove the end-to-end data flow from NestJS to Next.js.
-
-After the basic frontend connection works, continue with `/photos/[slug]`.
-
-## Near-term follow-up
+After the Photos API contract is documented clearly, prepare for PostgreSQL persistence.
 
 Before considering the Photos API contract complete, perform a focused Swagger/OpenAPI documentation pass:
 

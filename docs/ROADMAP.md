@@ -202,8 +202,8 @@ Example photo metadata may include:
 - [x] `GET /photos/:slug` returns one photograph
 - [ ] Swagger documents both endpoints
 - [ ] `/photos` displays data from the API
-- [ ] `/photos/[slug]` displays a real detail page
-- [ ] categories can filter or group photos
+- [x] `/photos/[slug]` displays a real detail page
+- [x] categories can filter or group photos
 - [ ] homepage contains real photography content
 - [ ] basic responsive styling is in place
 - [ ] basic accessibility has been reviewed
