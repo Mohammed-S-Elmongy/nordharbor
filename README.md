@@ -22,4 +22,14 @@ The project emphasizes readable and maintainable code, thoughtful system design,
 
 ## Current status
 
-Project setup and architecture planning.
+**Phase 1: Public photography experience (in progress).**
+
+The Next.js frontend and NestJS backend are connected through working public photo endpoints.
+
+Implemented:
+- Public photo collection and individual photo pages.
+- Category filtering through the API.
+- Dynamic routes and internal navigation.
+- Hardcoded photo metadata as temporary development data.
+
+**Next:** DTO classes, Swagger/OpenAPI documentation, and PostgreSQL persistence.

@@ -147,14 +147,3 @@ Focus on:
 - representative examples
 
 After the Photos API contract is documented clearly, prepare for PostgreSQL persistence.
-
-Before considering the Photos API contract complete, perform a focused Swagger/OpenAPI documentation pass:
-
-- add meaningful API tags
-- add endpoint summaries and descriptions
-- document optional query parameters
-- document path parameters
-- document success responses
-- document expected `404` responses
-- introduce response DTO classes where useful for OpenAPI schemas
-- add representative examples

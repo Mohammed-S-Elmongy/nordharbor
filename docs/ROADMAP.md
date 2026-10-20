@@ -80,10 +80,6 @@ Create a clean development foundation and understand the basic tooling before im
 
 We understand the basic structure of the monorepo and how both applications start and communicate conceptually.
 
-## Next step
-
-Begin the first real vertical slice: public photos.
-
 ---
 
 # Phase 1 - Public photography experience
@@ -872,5 +868,3 @@ Complete enough of the current phase to understand why the next dependency or ar
 
 The roadmap may evolve as the product teaches us more about itself.
 ```
-
-That should paste cleanly now, with no phantom fences or weird formatting artifacts. 😄
