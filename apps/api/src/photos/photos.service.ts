@@ -60,17 +60,15 @@ export class PhotosService {
   }
 
   getPhotosByCategory(category: string): Photo[] {
-  
     if (category.toLowerCase().trim() === "all") {
       return this.getPhotos();
     }
 
     const photos = this.photos.filter(
       (photo) =>
-        photo.category.toLowerCase().trim() ===
-        category.toLowerCase().trim(),
+        photo.category.toLowerCase().trim() === category.toLowerCase().trim(),
     );
-    
+
     return photos;
   }
 }
