@@ -6,7 +6,7 @@ import {
   ApiQuery,
   ApiTags,
 } from "@nestjs/swagger";
-import { ErrorResponseDto } from "../common/error-response.dto.js";
+import { ErrorResponseDto } from "../common/dto/error-response.dto.js";
 import { PhotosService } from "./photos.service.js";
 import { toPhotoResponseDto } from "./photo.mapper.js";
 import { PhotoResponseDto } from "./dto/photo-response.dto.js";
