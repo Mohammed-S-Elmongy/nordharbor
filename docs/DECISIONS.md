@@ -156,3 +156,19 @@ Registered customers may purchase digital licenses and access full-resolution ed
 **Trade-off:** Customer accounts introduce additional authentication, account management and personal-data responsibilities.
 
 **Future evolution:** Guest checkout may be introduced later if reducing purchasing friction becomes a priority.
+
+### Decision 009: One primary category per photograph
+
+**Status:** Accepted
+
+**Decision:** Each photograph belongs to exactly one category in the initial release. A category may contain multiple photographs.
+
+**Implementation:** Use a one-to-many relationship between `categories` and `photos`, with `photos.category_id` referencing `categories.id`.
+
+**Why:** This satisfies current product requirements while keeping the initial relational model simple, understandable, and maintainable.
+
+**Trade-off:** Photographs cannot initially belong to multiple categories.
+
+**Future evolution:** If product requirements expand, introduce a many-to-many relationship through a deliberate database migration, updating queries, API contracts, and tests as needed.
+
+**Learning goal:** Demonstrate incremental database design, schema migrations, backward compatibility, and architectural evolution through readable code and meaningful Git history.
