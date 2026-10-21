@@ -126,24 +126,60 @@ In addition to the existing backend Photos feature:
 
 ## Current task
 
-Complete the API contract for vertical slice 001 using DTO classes and richer Swagger/OpenAPI documentation.
+Prepare Phase 2: PostgreSQL and persistent photo metadata.
 
-The first frontend/backend connection is now working.
+The first Photos API contract, response mapping, and initial automated tests have been implemented and verified locally.
+
+## Completed in the latest session
+
+- Created `PhotoResponseDto` with Swagger property metadata.
+- Added `@ApiTags`, `@ApiOperation`, `@ApiQuery`, `@ApiOkResponse`, and `@ApiNotFoundResponse` documentation.
+- Created a reusable `ErrorResponseDto` under `src/common/dto/`.
+- Documented successful and missing-photo HTTP responses.
+- Added `toPhotoResponseDto()` to explicitly select public photo properties.
+- Verified that an internal `storageKey` does not leak into public responses.
+- Created a mapper regression test and deliberately verified that it detects a field leak.
+- Introduced Vitest mocking for NestJS controller dependencies.
+- Updated generated tests to reflect current application behavior.
+- Confirmed that all six API tests pass.
+
+## Architectural lessons and decisions
+
+- TypeScript types provide compile-time checks, not runtime protection.
+- DTO classes provide runtime metadata for Swagger but do not automatically validate or filter responses.
+- Public API fields should be explicitly allowlisted through response mapping.
+- Feature-specific code belongs within its feature.
+- Reusable technical contracts may live under `src/common/`.
+- Controller unit tests can use mocked service providers through NestJS dependency injection.
+- Testing should support understanding and development, without replacing the learn-while-building workflow.
+
+## Environment and tooling changes
+
+No new tools installed or environment changes made.
+
+Existing tooling: WSL Ubuntu, Node.js, npm workspaces, Next.js, NestJS, Swagger/OpenAPI, and Vitest.
+
+## Unresolved questions
+
+- Which PostgreSQL access approach should NordHarbor use: direct SQL, query builder, or ORM?
+- What is the simplest reliable migration strategy?
+- Should Docker Compose be introduced immediately for local PostgreSQL?
+- How should the initial Photo and Category tables be related?
+- How should the existing hardcoded photo metadata be seeded into the database?
+- The Next.js Cache Components warning and startup readiness behavior remain future frontend concerns.
 
 ## Exact next step
 
-Introduce DTO classes and improve Swagger/OpenAPI documentation for the Photos API.
+Begin Phase 2 by learning PostgreSQL's role in the application and comparing database-access strategies before choosing one.
 
-Focus on:
+Then:
 
-- runtime DTO classes
-- response schemas
-- `@ApiTags`
-- `@ApiOperation`
-- `@ApiQuery`
-- `@ApiParam`
-- `@ApiOkResponse`
-- `@ApiNotFoundResponse`
-- representative examples
+1. Decide how to run PostgreSQL locally, including whether Docker Compose is appropriate.
+2. Design the initial Photo and Category schema.
+3. Learn migrations and establish the first migration.
+4. Connect the NestJS application to PostgreSQL.
+5. Replace hardcoded photo metadata with persistent data.
+6. Preserve the existing HTTP contracts and response mapper.
+7. Extend tests where necessary.
 
-After the Photos API contract is documented clearly, prepare for PostgreSQL persistence.
+Continue implementing each step manually with explanations and review.

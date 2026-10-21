@@ -196,7 +196,7 @@ Example photo metadata may include:
 
 - [x] `GET /photos` returns photo metadata
 - [x] `GET /photos/:slug` returns one photograph
-- [ ] Swagger documents both endpoints
+- [x] Swagger documents both endpoints
 - [x] `/photos` displays data from the API
 - [x] `/photos/[slug]` displays a real detail page
 - [x] categories can filter or group photos
@@ -850,21 +850,16 @@ Swagger/OpenAPI discovers the endpoints, but richer API documentation remains a 
 
 ## Exact next step
 
-Photo DTO
-↓
-Swagger response schemas
-↓
-endpoint documentation
-↓
-API contract complete enough for PostgreSQL
+Prepare Phase 2: PostgreSQL and persistent data.
 
----
+The Photos API now has documented response DTOs, explicit response mapping, and initial automated regression tests.
 
-# Working rule
+Next:
 
-Do not begin a later phase merely because its technology looks interesting.
+1. Learn PostgreSQL architecture and the role of a database access layer.
+2. Compare direct SQL, query builders, and ORMs.
+3. Evaluate Docker Compose for local PostgreSQL development.
+4. Design and implement the first database schema and migration.
+5. Gradually replace hardcoded photo data while preserving the public API contract.
 
-Complete enough of the current phase to understand why the next dependency or architectural change is needed.
-
-The roadmap may evolve as the product teaches us more about itself.
-```
+Phase 1 remains in progress. The photography homepage, polished gallery presentation, styling, accessibility, and broader testing will be completed as the product develops.
