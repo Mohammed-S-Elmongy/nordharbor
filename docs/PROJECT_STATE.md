@@ -126,60 +126,88 @@ In addition to the existing backend Photos feature:
 
 ## Current task
 
-Prepare Phase 2: PostgreSQL and persistent photo metadata.
+Phase 2: PostgreSQL and persistent photo data.
 
-The first Photos API contract, response mapping, and initial automated tests have been implemented and verified locally.
+The local PostgreSQL environment is running successfully through Docker Compose. The next learning and implementation milestone is database migrations.
 
-## Completed in the latest session
+## Completed in the latest session (2026-10-22)
 
-- Created `PhotoResponseDto` with Swagger property metadata.
-- Added `@ApiTags`, `@ApiOperation`, `@ApiQuery`, `@ApiOkResponse`, and `@ApiNotFoundResponse` documentation.
-- Created a reusable `ErrorResponseDto` under `src/common/dto/`.
-- Documented successful and missing-photo HTTP responses.
-- Added `toPhotoResponseDto()` to explicitly select public photo properties.
-- Verified that an internal `storageKey` does not leak into public responses.
-- Created a mapper regression test and deliberately verified that it detects a field leak.
-- Introduced Vitest mocking for NestJS controller dependencies.
-- Updated generated tests to reflect current application behavior.
-- Confirmed that all six API tests pass.
+- Installed `@nestjs/config` in the API workspace.
+- Configured `ConfigModule.forRoot()` to load the repository-root `.env`.
+- Verified configuration loading through `ConfigService`.
+- Created and committed `.env.example` without credentials.
+- Audited npm dependencies and removed the unused `@nestjs/mau` deployment dependency and its script.
+- Verified that all six existing API tests still pass.
+- Enabled Docker Desktop's WSL2 integration.
+- Resolved Docker socket permissions for the Ubuntu development user.
+- Learned the distinction between Docker images, containers, volumes, networks, and the Docker daemon.
+- Created the repository-root `compose.yaml`.
+- Configured PostgreSQL 18 with environment variables, localhost-only port publishing, and a named persistent volume.
+- Started PostgreSQL and verified successful initialization.
+- Reset the disposable database volume to rename the initial database from `nordharbor_db` to `nordharbor`.
+- Connected successfully through `psql` and configured DBeaver.
+- Confirmed PostgreSQL 18.6, database `nordharbor`, and role `nordharbor_app`.
 
-## Architectural lessons and decisions
+## Current local architecture
 
-- TypeScript types provide compile-time checks, not runtime protection.
-- DTO classes provide runtime metadata for Swagger but do not automatically validate or filter responses.
-- Public API fields should be explicitly allowlisted through response mapping.
-- Feature-specific code belongs within its feature.
-- Reusable technical contracts may live under `src/common/`.
-- Controller unit tests can use mocked service providers through NestJS dependency injection.
-- Testing should support understanding and development, without replacing the learn-while-building workflow.
+```text
+Next.js (WSL, port 3000)
+        |
+        | HTTP
+        v
+NestJS (WSL, port 3001)
+        |
+        | PostgreSQL connection - not implemented yet
+        v
+PostgreSQL (Docker, localhost:5432)
+        |
+        v
+Named volume: nordharbor_postgres_data
+```
 
 ## Environment and tooling changes
 
-No new tools installed or environment changes made.
+- Docker Desktop with WSL2 integration enabled.
+- Ubuntu user added to the `docker` group.
+- PostgreSQL 18 Docker image.
+- Docker Compose configuration in repository root.
+- Database name: `nordharbor`.
+- Database initialization role: `nordharbor_app`.
+- NestJS configuration handled through `@nestjs/config`.
+- Local credentials stored in ignored `.env`; placeholders in `.env.example`.
 
-Existing tooling: WSL Ubuntu, Node.js, npm workspaces, Next.js, NestJS, Swagger/OpenAPI, and Vitest.
+## Architectural decisions
 
-## Unresolved questions
+- Use Docker Compose for local PostgreSQL while keeping the web and API development servers in WSL.
+- Pin PostgreSQL to major version 18 instead of relying on `latest`.
+- Preserve PostgreSQL data in a named volume.
+- Bind the database's published port to `127.0.0.1`.
+- Keep Docker resource names managed by Compose without a custom `container_name`.
+- Each photograph belongs to exactly one category initially (Decision 009).
+- Changes to database structure will be reproducible through migrations rather than undocumented manual database edits.
 
-- Which PostgreSQL access approach should NordHarbor use: direct SQL, query builder, or ORM?
-- What is the simplest reliable migration strategy?
-- Should Docker Compose be introduced immediately for local PostgreSQL?
-- How should the initial Photo and Category tables be related?
-- How should the existing hardcoded photo metadata be seeded into the database?
-- The Next.js Cache Components warning and startup readiness behavior remain future frontend concerns.
+## Open questions and risks
+
+- Choose a database access approach: direct SQL, query builder, or ORM.
+- Choose a migration strategy and tool.
+- Design the first `categories` and `photos` tables and constraints.
+- Determine how to seed sample photo data.
+- Connect NestJS to PostgreSQL without changing the public API contract.
+- Introduce a least-privileged runtime database role later; the initialization role is currently a superuser.
+- Review outstanding npm audit findings in development dependencies.
+- Revisit Next.js Cache Components and startup-readiness issues during frontend work.
+- Database backups and recovery have not been implemented.
 
 ## Exact next step
 
-Begin Phase 2 by learning PostgreSQL's role in the application and comparing database-access strategies before choosing one.
+**Begin by learning database migrations properly, before creating application tables.**
 
-Then:
+1. Understand what a migration is and why it belongs in version control.
+2. Learn how migrations are tracked, applied, and safely evolved.
+3. Compare migration tooling alongside direct SQL, query builders, and ORMs.
+4. Choose the simplest suitable approach for NordHarbor.
+5. Design the initial `categories` and `photos` schema.
+6. Create, apply, and verify the first migration.
+7. Connect NestJS to the persisted data.
 
-1. Decide how to run PostgreSQL locally, including whether Docker Compose is appropriate.
-2. Design the initial Photo and Category schema.
-3. Learn migrations and establish the first migration.
-4. Connect the NestJS application to PostgreSQL.
-5. Replace hardcoded photo metadata with persistent data.
-6. Preserve the existing HTTP contracts and response mapper.
-7. Extend tests where necessary.
-
-Continue implementing each step manually with explanations and review.
+Maintain the learn-while-building approach. Explain syntax, commands, and database behavior before implementation.

@@ -281,7 +281,7 @@ Potential `Photo` fields:
 
 ## Done when
 
-- [ ] PostgreSQL runs locally
+- [x] PostgreSQL runs locally
 - [ ] schema is documented
 - [ ] migrations can build the database from scratch
 - [ ] photos are read from PostgreSQL
@@ -850,16 +850,18 @@ Swagger/OpenAPI discovers the endpoints, but richer API documentation remains a 
 
 ## Exact next step
 
-Prepare Phase 2: PostgreSQL and persistent data.
+**Phase 2: Learn and implement database migrations.**
 
-The Photos API now has documented response DTOs, explicit response mapping, and initial automated regression tests.
+Local PostgreSQL 18 infrastructure is running through Docker Compose, with a named persistent volume and working `psql`/DBeaver connections.
 
 Next:
 
-1. Learn PostgreSQL architecture and the role of a database access layer.
-2. Compare direct SQL, query builders, and ORMs.
-3. Evaluate Docker Compose for local PostgreSQL development.
-4. Design and implement the first database schema and migration.
-5. Gradually replace hardcoded photo data while preserving the public API contract.
+1. Learn how migrations work and why they are version-controlled.
+2. Compare direct SQL, query builders, and ORMs with their migration approaches.
+3. Choose a suitable database-access and migration strategy.
+4. Design the `categories` and `photos` tables.
+5. Apply the first migration to an empty database.
+6. Connect the NestJS Photos feature to PostgreSQL.
+7. Preserve the existing public API contract and regression tests.
 
-Phase 1 remains in progress. The photography homepage, polished gallery presentation, styling, accessibility, and broader testing will be completed as the product develops.
+Phase 1 remains in progress. We will return to the photography UI after establishing the persistent data layer.

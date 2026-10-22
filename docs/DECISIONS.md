@@ -172,3 +172,27 @@ Registered customers may purchase digital licenses and access full-resolution ed
 **Future evolution:** If product requirements expand, introduce a many-to-many relationship through a deliberate database migration, updating queries, API contracts, and tests as needed.
 
 **Learning goal:** Demonstrate incremental database design, schema migrations, backward compatibility, and architectural evolution through readable code and meaningful Git history.
+
+### Decision 010: PostgreSQL local development through Docker Compose
+
+**Status:** Accepted
+
+**Decision:** Run PostgreSQL 18 through Docker Compose during local development. Keep Next.js and NestJS running directly in WSL initially.
+
+**Why:** Provide a reproducible, isolated database environment while learning container architecture, networking, persistence, and database administration without prematurely containerizing the entire application.
+
+**Implementation:**
+
+- Store the Compose configuration in the repository root.
+- Use the official `postgres:18` image.
+- Publish PostgreSQL on `127.0.0.1:5432`.
+- Preserve database files using the `postgres_data` named volume.
+- Load local values from an ignored `.env` file.
+- Commit `.env.example` without real credentials.
+- Let Compose generate resource names.
+
+**Trade-offs:** Development requires Docker Desktop to be available, and the current database initialization account has elevated privileges.
+
+**Future evolution:** Introduce a least-privileged application role, health checks, backups, and controlled PostgreSQL upgrades. Containerize the API and frontend when deployment or development requirements justify it.
+
+**Learning goal:** Understand and demonstrate reproducible development infrastructure, Docker fundamentals, and the separation between applications and persistent services.
