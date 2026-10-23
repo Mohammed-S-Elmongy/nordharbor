@@ -124,90 +124,44 @@ In addition to the existing backend Photos feature:
 
 ---
 
-## Current task
+## Session checkpoint: 2026-10-23
 
-Phase 2: PostgreSQL and persistent photo data.
+### Completed
+- Installed `drizzle-orm`, `drizzle-kit`, `pg`, and `@types/pg` in the API workspace.
+- Chose Drizzle ORM with version-controlled SQL migrations.
+- Created `apps/api/src/db/schema.ts`.
+- Defined the `categories` table with an identity primary key, required name, and unique slug.
+- Generated `0000_initial_categories.sql`.
+- Applied the migration successfully to PostgreSQL 18.
+- Verified the table through DBeaver.
+- Verified the migration journal contains one record.
+- Confirmed repeated migrations do not reapply completed changes.
+- Created shared database configuration in `apps/api/config/database.ts`.
+- Created `apps/api/scripts/migrate.ts`.
+- Verified the programmatic migration runner exits successfully with code `0`.
 
-The local PostgreSQL environment is running successfully through Docker Compose. The next learning and implementation milestone is database migrations.
+### Decisions
+- Use Drizzle Kit to generate version-controlled SQL migrations.
+- Use Drizzle's programmatic migrator as a workaround for the failing CLI migrate command.
+- Share validated PostgreSQL configuration between database tooling.
+- Keep database tooling in TypeScript where practical.
 
-## Completed in the latest session (2026-10-22)
+### Tooling and environment
+- PostgreSQL 18 via Docker Compose.
+- Drizzle ORM 0.45.4.
+- Drizzle Kit 0.31.11.
+- pg 8.23.1.
+- Node.js 24 with native TypeScript type stripping.
 
-- Installed `@nestjs/config` in the API workspace.
-- Configured `ConfigModule.forRoot()` to load the repository-root `.env`.
-- Verified configuration loading through `ConfigService`.
-- Created and committed `.env.example` without credentials.
-- Audited npm dependencies and removed the unused `@nestjs/mau` deployment dependency and its script.
-- Verified that all six existing API tests still pass.
-- Enabled Docker Desktop's WSL2 integration.
-- Resolved Docker socket permissions for the Ubuntu development user.
-- Learned the distinction between Docker images, containers, volumes, networks, and the Docker daemon.
-- Created the repository-root `compose.yaml`.
-- Configured PostgreSQL 18 with environment variables, localhost-only port publishing, and a named persistent volume.
-- Started PostgreSQL and verified successful initialization.
-- Reset the disposable database volume to rename the initial database from `nordharbor_db` to `nordharbor`.
-- Connected successfully through `psql` and configured DBeaver.
-- Confirmed PostgreSQL 18.6, database `nordharbor`, and role `nordharbor_app`.
+### Open issues
+- `drizzle-kit migrate` exits with code 1 without displaying an error. Root cause remains unconfirmed.
+- VS Code/TypeScript complains about the `.ts` extension in the migration script's import.
+- npm database scripts have not been added.
+- README database setup instructions are pending.
+- Migration script failure and cleanup paths need further testing.
+- Open-source investigation of Drizzle's CLI issue is a possible separate task.
 
-## Current local architecture
+### Exact next step
+Resolve the TypeScript import warning without disrupting NestJS's build configuration. Then add and verify `db:generate` and `db:migrate` npm scripts.
 
-```text
-Next.js (WSL, port 3000)
-        |
-        | HTTP
-        v
-NestJS (WSL, port 3001)
-        |
-        | PostgreSQL connection - not implemented yet
-        v
-PostgreSQL (Docker, localhost:5432)
-        |
-        v
-Named volume: nordharbor_postgres_data
-```
-
-## Environment and tooling changes
-
-- Docker Desktop with WSL2 integration enabled.
-- Ubuntu user added to the `docker` group.
-- PostgreSQL 18 Docker image.
-- Docker Compose configuration in repository root.
-- Database name: `nordharbor`.
-- Database initialization role: `nordharbor_app`.
-- NestJS configuration handled through `@nestjs/config`.
-- Local credentials stored in ignored `.env`; placeholders in `.env.example`.
-
-## Architectural decisions
-
-- Use Docker Compose for local PostgreSQL while keeping the web and API development servers in WSL.
-- Pin PostgreSQL to major version 18 instead of relying on `latest`.
-- Preserve PostgreSQL data in a named volume.
-- Bind the database's published port to `127.0.0.1`.
-- Keep Docker resource names managed by Compose without a custom `container_name`.
-- Each photograph belongs to exactly one category initially (Decision 009).
-- Changes to database structure will be reproducible through migrations rather than undocumented manual database edits.
-
-## Open questions and risks
-
-- Choose a database access approach: direct SQL, query builder, or ORM.
-- Choose a migration strategy and tool.
-- Design the first `categories` and `photos` tables and constraints.
-- Determine how to seed sample photo data.
-- Connect NestJS to PostgreSQL without changing the public API contract.
-- Introduce a least-privileged runtime database role later; the initialization role is currently a superuser.
-- Review outstanding npm audit findings in development dependencies.
-- Revisit Next.js Cache Components and startup-readiness issues during frontend work.
-- Database backups and recovery have not been implemented.
-
-## Exact next step
-
-**Begin by learning database migrations properly, before creating application tables.**
-
-1. Understand what a migration is and why it belongs in version control.
-2. Learn how migrations are tracked, applied, and safely evolved.
-3. Compare migration tooling alongside direct SQL, query builders, and ORMs.
-4. Choose the simplest suitable approach for NordHarbor.
-5. Design the initial `categories` and `photos` schema.
-6. Create, apply, and verify the first migration.
-7. Connect NestJS to the persisted data.
-
-Maintain the learn-while-building approach. Explain syntax, commands, and database behavior before implementation.
+Afterward, document the workflow in README.md and proceed to the `photos` table with a foreign key referencing `categories.id`.
