@@ -8,7 +8,9 @@
   "scripts": {
     "web": "npm run dev --workspace=@nordharbor/web",
     "api": "npm run start:dev --workspace=@nordharbor/api",
-    "apps": "concurrently \"npm run web\" \"npm run api\""
+    "apps": "concurrently \"npm run web\" \"npm run api\"",
+    "db:generate": "npm run db:generate -w @nordharbor/api",
+    "db:migrate": "npm run db:migrate -w @nordharbor/api"
   },
   "devDependencies": {
     "concurrently": "^10.0.6"
