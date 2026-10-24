@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import type { Photo } from "../types.js";
 
-export default async function PhotoSlug({
+async function PhotoDetails({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -25,5 +26,17 @@ export default async function PhotoSlug({
       <h1>{photo.title}</h1>
       <p>{photo.description}</p>
     </div>
+  );
+}
+
+export default function PhotoPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  return (
+    <Suspense fallback={<p>Loading photo...</p>}>
+      <PhotoDetails params={params} />
+    </Suspense>
   );
 }

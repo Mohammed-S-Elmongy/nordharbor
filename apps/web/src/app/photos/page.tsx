@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import type { Photo } from "./types.js";
 
-export default async function PhotosPage({
+async function PhotosList({
   searchParams,
 }: {
   searchParams: Promise<{ category?: string }>;
@@ -23,7 +24,6 @@ export default async function PhotosPage({
 
   return (
     <div>
-      <h1>Photos</h1>
       {photos.length === 0 && <p>No photos found.</p>}
       <ul>
         {photos.map((photo) => {
@@ -55,5 +55,19 @@ export default async function PhotosPage({
         })}
       </ul>
     </div>
+  );
+}
+export default function PhotosPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
+  return (
+    <>
+      <h1>Photos</h1>
+      <Suspense fallback={<p>Loading photos...</p>}>
+        <PhotosList searchParams={searchParams} />
+      </Suspense>
+    </>
   );
 }
