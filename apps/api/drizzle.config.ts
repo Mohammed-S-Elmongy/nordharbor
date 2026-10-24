@@ -1,5 +1,5 @@
 import { defineConfig } from "drizzle-kit";
-import { getDbConfig } from "./config/database.js";
+import { getDbConfig } from "./src/config/database.ts";
 
 export default defineConfig({
   dialect: "postgresql",
