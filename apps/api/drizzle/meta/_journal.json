@@ -8,6 +8,13 @@
       "when": 1792710500350,
       "tag": "0000_initial_categories",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792860815406,
+      "tag": "0001_add_photographers_and_photos",
+      "breakpoints": true
     }
   ]
 }

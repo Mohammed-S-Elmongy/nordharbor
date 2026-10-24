@@ -1,6 +1,6 @@
 import { loadEnvFile } from "node:process";
 
-loadEnvFile(new URL("../../../.env", import.meta.url));
+loadEnvFile(new URL("../../../../.env", import.meta.url));
 
 function requireEnvVar(name: string): string {
   const value = process.env[name];
