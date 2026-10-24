@@ -196,3 +196,28 @@ Registered customers may purchase digital licenses and access full-resolution ed
 **Future evolution:** Introduce a least-privileged application role, health checks, backups, and controlled PostgreSQL upgrades. Containerize the API and frontend when deployment or development requirements justify it.
 
 **Learning goal:** Understand and demonstrate reproducible development infrastructure, Docker fundamentals, and the separation between applications and persistent services.
+
+### Decision 011: Drizzle ORM and version-controlled SQL migrations
+
+**Status:** Accepted
+
+**Decision:** Use Drizzle ORM with PostgreSQL for type-safe database access. Use Drizzle Kit to generate SQL migration files, review them before execution, and commit them to Git.
+
+**Why:**
+- SQL-like, readable TypeScript syntax.
+- Transparent SQL generation.
+- Type-safe queries.
+- Reproducible database schema changes.
+- Opportunities to learn PostgreSQL and SQL directly.
+
+**Implementation:**
+- Schema definitions in `apps/api/src/db/schema.ts`.
+- Generated migrations in `apps/api/drizzle/`.
+- Shared configuration in `apps/api/config/database.ts`.
+- Drizzle Kit for migration generation.
+- Programmatic migrator through `apps/api/scripts/migrate.ts`.
+- Root npm scripts: `db:generate` and `db:migrate`.
+
+**Trade-off:** Drizzle Kit's migration CLI currently fails silently in our environment. The programmatic migrator works and is used as a documented workaround.
+
+**Future evolution:** Revisit the CLI workaround when upgrading Drizzle. Introduce a least-privileged database role and migration deployment procedures before production.

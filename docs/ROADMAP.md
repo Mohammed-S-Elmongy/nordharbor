@@ -281,6 +281,12 @@ Potential `Photo` fields:
 
 ## Done when
 
+- [x] Drizzle ORM selected and installed
+- [x] Database migration workflow configured
+- [x] Initial categories table created
+- [x] Initial migration applied and tracked
+- [x] Shared database configuration implemented
+- [x] Root database npm commands verified
 - [x] PostgreSQL runs locally
 - [ ] schema is documented
 - [ ] migrations can build the database from scratch

@@ -2,7 +2,7 @@
 
 ## Current phase
 
-Phase 1: Public photography experience.
+Phase 2: Public photography experience.
 
 ## Project goal
 
@@ -67,7 +67,6 @@ nordharbor/
 ## Still undecided
 
 - Detailed MVP feature boundaries
-- ORM or SQL database-access strategy
 - Object-storage provider and image-processing approach
 - Authentication implementation
 - Payment provider
@@ -155,13 +154,24 @@ In addition to the existing backend Photos feature:
 
 ### Open issues
 - `drizzle-kit migrate` exits with code 1 without displaying an error. Root cause remains unconfirmed.
-- VS Code/TypeScript complains about the `.ts` extension in the migration script's import.
-- npm database scripts have not been added.
-- README database setup instructions are pending.
 - Migration script failure and cleanup paths need further testing.
 - Open-source investigation of Drizzle's CLI issue is a possible separate task.
 
+### Latest progress: 2026-10-24
+
+- Enabled `rewriteRelativeImportExtensions` in the API TypeScript configuration.
+- Verified `tsc --noEmit` passes.
+- Verified the NestJS API builds successfully.
+- Added `db:generate` and `db:migrate` scripts at both API and repository-root levels.
+- Successfully tested `npm run db:migrate` from the repository root.
+- Updated the root README with the technology stack, development setup, commands and migration workflow.
+
 ### Exact next step
-Resolve the TypeScript import warning without disrupting NestJS's build configuration. Then add and verify `db:generate` and `db:migrate` npm scripts.
+
+Design and implement the `photos` table in `apps/api/src/db/schema.ts`, with a foreign key referencing `categories.id`.
+
+Generate, review, apply and verify the second SQL migration.
+
+Afterward, connect the NestJS Photos feature to PostgreSQL and replace the temporary hardcoded data.
 
 Afterward, document the workflow in README.md and proceed to the `photos` table with a foreign key referencing `categories.id`.
