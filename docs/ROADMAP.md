@@ -288,8 +288,8 @@ Potential `Photo` fields:
 - [x] Shared database configuration implemented
 - [x] Root database npm commands verified
 - [x] PostgreSQL runs locally
-- [ ] schema is documented
-- [ ] migrations can build the database from scratch
+- [x] schema is documented
+- [x] migrations can build the database from scratch
 - [ ] photos are read from PostgreSQL
 - [ ] categories are read from PostgreSQL
 - [ ] hardcoded photo data is removed

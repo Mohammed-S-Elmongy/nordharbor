@@ -152,19 +152,27 @@ In addition to the existing backend Photos feature:
 - pg 8.23.1.
 - Node.js 24 with native TypeScript type stripping.
 
-### Open issues
-- `drizzle-kit migrate` exits with code 1 without displaying an error. Root cause remains unconfirmed.
-- Migration script failure and cleanup paths need further testing.
-- Open-source investigation of Drizzle's CLI issue is a possible separate task.
+**Open issues:**
+- Replace the hardcoded `PhotosService` array with Drizzle queries.
+- Preserve the existing API response DTO, category filtering and slug lookup behavior.
+- Review unresolved npm security audit findings for `body-parser` and `multer`.
+- Investigate the Drizzle Kit CLI migration failure separately.
 
 ### Latest progress: 2026-10-24
 
-- Enabled `rewriteRelativeImportExtensions` in the API TypeScript configuration.
-- Verified `tsc --noEmit` passes.
-- Verified the NestJS API builds successfully.
-- Added `db:generate` and `db:migrate` scripts at both API and repository-root levels.
-- Successfully tested `npm run db:migrate` from the repository root.
-- Updated the root README with the technology stack, development setup, commands and migration workflow.
+- PostgreSQL 18 running with Docker Compose.
+- Drizzle schema defines `categories`, `photographers` and `photos` with two foreign keys.
+- Migration `0001` generated and applied successfully.
+- SQL INSERT, foreign-key constraints and JOINs tested in DBeaver.
+- Official `@nestjs/drizzle` integration replaces custom database service/module scaffolding.
+- Shared database configuration validates connection settings for the API and CLI tools.
+- Database-backed query verified through a temporary NestJS endpoint.
+- Next.js and `eslint-config-next` aligned at `16.4.3`.
+- `/photos` and `/photos/[slug]` production builds succeed using Suspense and Partial Prerendering.
+- API build, migration generation, migration runner and NestJS startup verified.
+
+
+**Exact next step:** Implement the first real database-backed `PhotosService.getPhotos()` method..
 
 ### Exact next step
 

@@ -221,3 +221,20 @@ Registered customers may purchase digital licenses and access full-resolution ed
 **Trade-off:** Drizzle Kit's migration CLI currently fails silently in our environment. The programmatic migrator works and is used as a documented workaround.
 
 **Future evolution:** Revisit the CLI workaround when upgrading Drizzle. Introduce a least-privileged database role and migration deployment procedures before production.
+
+### Decision 012: Official framework integrations and shared database configuration
+
+**Status:** Accepted
+
+**Decision:**
+- Prefer official framework documentation and CLI generators.
+- Use `@nestjs/drizzle` for NestJS database integration and dependency injection.
+- Use stable Drizzle ORM releases.
+- Maintain one shared `getDbConfig()` validator for database connection settings.
+- Load environment variables through NestJS ConfigModule at runtime and explicitly in standalone database CLI tools.
+- Keep SQL migrations version-controlled and executed separately from application startup.
+- Favor clean refactoring over preserving experimental code during early development.
+
+**Why:** Consistent framework conventions, fewer custom abstractions, predictable configuration and understandable data flow.
+
+**Known issue:** `drizzle-kit migrate` exits with code 1 without reporting an error. The programmatic migration runner remains the supported project workaround.
