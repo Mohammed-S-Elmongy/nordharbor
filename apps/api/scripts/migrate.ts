@@ -3,6 +3,9 @@ import pg from "pg";
 import { fileURLToPath } from "node:url";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
+import { loadEnvFile } from "node:process";
+
+loadEnvFile(new URL("../../../.env", import.meta.url));
 
 // Workaround: drizzle-kit migrate exits with code 1 without reporting an error
 // in our current setup. Use Drizzle's programmatic migrator instead.
