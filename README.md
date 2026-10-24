@@ -37,10 +37,10 @@ nordharbor/
 ├── apps/
 │   ├── web/              # Next.js frontend
 │   └── api/              # NestJS backend
-│       ├── config/       # Shared tooling configuration
 │       ├── drizzle/      # SQL migrations and metadata
 │       ├── scripts/      # Database tooling
 │       └── src/          # API source code
+|           └── config/   # Shared tooling configuration
 ├── docs/                 # Project state, decisions and roadmap
 ├── compose.yaml          # PostgreSQL container
 ├── .env.example          # Environment variable template
@@ -138,15 +138,18 @@ npm run build -w @nordharbor/web
 
 **Phase 2: PostgreSQL and persistent photo data (in progress)**
 
-- Next.js and NestJS applications initialized and communicating.
-- Public photo collection and detail endpoints working with temporary data.
-- Category filtering and dynamic frontend routes implemented.
+- Next.js 16.4.3 and NestJS applications running.
+- Public photo collection, filtering and detail endpoints implemented with temporary data.
 - PostgreSQL 18 running through Docker Compose.
-- Drizzle ORM configured with version-controlled migrations.
-- Initial `categories` table created and verified.
-- Database migration scripts available from the repository root.
+- Drizzle ORM integrated with NestJS using `@nestjs/drizzle`.
+- `categories`, `photographers` and `photos` tables created with foreign-key relationships.
+- Version-controlled SQL migrations generated and applied.
+- Database query verified through NestJS.
+- Frontend production build supports Suspense and Partial Prerendering.
 
-**Next:** Implement the `photos` database table, link photographs to categories through a foreign key, and replace hardcoded photo metadata with PostgreSQL queries.
+**Next:** Replace hardcoded photo data with PostgreSQL queries while maintaining the API response contract.
+
+**Security:** Dependency advisories remain under review before deployment.
 
 ## Project documentation
 

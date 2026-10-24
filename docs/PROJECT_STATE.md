@@ -158,28 +158,35 @@ In addition to the existing backend Photos feature:
 - Review unresolved npm security audit findings for `body-parser` and `multer`.
 - Investigate the Drizzle Kit CLI migration failure separately.
 
-### Latest progress: 2026-10-24
+## Session checkpoint: 2026-10-24
 
-- PostgreSQL 18 running with Docker Compose.
-- Drizzle schema defines `categories`, `photographers` and `photos` with two foreign keys.
-- Migration `0001` generated and applied successfully.
-- SQL INSERT, foreign-key constraints and JOINs tested in DBeaver.
-- Official `@nestjs/drizzle` integration replaces custom database service/module scaffolding.
-- Shared database configuration validates connection settings for the API and CLI tools.
-- Database-backed query verified through a temporary NestJS endpoint.
-- Next.js and `eslint-config-next` aligned at `16.4.3`.
-- `/photos` and `/photos/[slug]` production builds succeed using Suspense and Partial Prerendering.
-- API build, migration generation, migration runner and NestJS startup verified.
+### Completed
+- Created `photographers` and `photos` tables.
+- Defined category and photographer foreign keys with `ON DELETE RESTRICT`.
+- Generated, reviewed and applied migration `0001`.
+- Practiced SQL INSERT, JOIN, NULL, defaults and foreign-key validation in DBeaver.
+- Verified a PostgreSQL photo query through NestJS.
+- Replaced custom database connection scaffolding with official `@nestjs/drizzle`.
+- Centralized database configuration validation in `getDbConfig()`.
+- Kept schema generation and migration execution as standalone CLI workflows.
+- Upgraded Next.js and `eslint-config-next` to 16.4.3.
+- Fixed production prerendering failures using React Suspense.
+- Verified API build, web build, Drizzle generation, programmatic migration and NestJS startup.
 
+### Decisions
+- Prefer official framework documentation and CLI generators.
+- Keep Drizzle ORM on its stable release line.
+- Favor readable framework conventions over unnecessary custom abstractions.
+- Permit deliberate destructive resets of disposable local development data.
 
-**Exact next step:** Implement the first real database-backed `PhotosService.getPhotos()` method..
+### Open issues
+- `PhotosService` still uses an in-memory photo array.
+- Database rows must be mapped to the existing API response DTO.
+- Review outstanding `body-parser` and `multer` security advisories using a fresh audit.
+- Investigate the silent `drizzle-kit migrate` failure separately.
+- Study Next.js Suspense and Partial Prerendering in greater depth.
 
 ### Exact next step
+Replace `PhotosService.getPhotos()` with a real Drizzle query while preserving the existing API response structure.
 
-Design and implement the `photos` table in `apps/api/src/db/schema.ts`, with a foreign key referencing `categories.id`.
-
-Generate, review, apply and verify the second SQL migration.
-
-Afterward, connect the NestJS Photos feature to PostgreSQL and replace the temporary hardcoded data.
-
-Afterward, document the workflow in README.md and proceed to the `photos` table with a foreign key referencing `categories.id`.
+Then implement category filtering and slug lookup through PostgreSQL.
