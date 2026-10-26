@@ -856,18 +856,19 @@ Swagger/OpenAPI discovers the endpoints, but richer API documentation remains a 
 
 ## Exact next step
 
-**Phase 2: Learn and implement database migrations.**
+### Phase 2 progress: 2026-10-26
 
-Local PostgreSQL 18 infrastructure is running through Docker Compose, with a named persistent volume and working `psql`/DBeaver connections.
+- [x] Run PostgreSQL through Docker Compose.
+- [x] Select Drizzle ORM and establish database access conventions.
+- [x] Create categories, photographers and photos schemas.
+- [x] Generate and apply version-controlled SQL migrations.
+- [x] Integrate Drizzle with NestJS.
+- [x] Replace hardcoded photo data with persistent database queries.
+- [x] Implement photo, category and photographer JOINs.
+- [x] Preserve public API response contracts through DTOs and mappers.
+- [x] Verify successful, filtered, empty and missing-resource API responses.
+- [x] Add initial automated unit tests.
+- [ ] Add dedicated database integration tests.
+- [ ] Establish repeatable database seed data.
 
-Next:
-
-1. Learn how migrations work and why they are version-controlled.
-2. Compare direct SQL, query builders, and ORMs with their migration approaches.
-3. Choose a suitable database-access and migration strategy.
-4. Design the `categories` and `photos` tables.
-5. Apply the first migration to an empty database.
-6. Connect the NestJS Photos feature to PostgreSQL.
-7. Preserve the existing public API contract and regression tests.
-
-Phase 1 remains in progress. We will return to the photography UI after establishing the persistent data layer.
+**Next:** Resume Phase 1 frontend experience work using the approved NordHarbor design direction. Build the homepage, gallery UI and responsive photo components.

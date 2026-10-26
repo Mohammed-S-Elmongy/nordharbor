@@ -2,7 +2,11 @@
 
 ## Current phase
 
-Phase 2: Public photography experience.
+## Current phase
+
+Phase 1: Public photography experience (visual design in progress).
+
+Phase 2: PostgreSQL and persistent photo data (core read-only integration complete).
 
 ## Project goal
 
@@ -158,35 +162,61 @@ In addition to the existing backend Photos feature:
 - Review unresolved npm security audit findings for `body-parser` and `multer`.
 - Investigate the Drizzle Kit CLI migration failure separately.
 
-## Session checkpoint: 2026-10-24
+## Session checkpoint: 2026-10-26
 
 ### Completed
-- Created `photographers` and `photos` tables.
-- Defined category and photographer foreign keys with `ON DELETE RESTRICT`.
-- Generated, reviewed and applied migration `0001`.
-- Practiced SQL INSERT, JOIN, NULL, defaults and foreign-key validation in DBeaver.
-- Verified a PostgreSQL photo query through NestJS.
-- Replaced custom database connection scaffolding with official `@nestjs/drizzle`.
-- Centralized database configuration validation in `getDbConfig()`.
-- Kept schema generation and migration execution as standalone CLI workflows.
-- Upgraded Next.js and `eslint-config-next` to 16.4.3.
-- Fixed production prerendering failures using React Suspense.
-- Verified API build, web build, Drizzle generation, programmatic migration and NestJS startup.
+
+- Replaced the hardcoded `PhotosService` array with PostgreSQL queries using Drizzle ORM.
+- Established Drizzle's SQL-like query builder as the default database access convention.
+- Implemented INNER JOINs to retrieve photo, category and photographer information.
+- Preserved the existing public photo API contract.
+- Added public photographer details through the response DTO and mapper.
+- Updated database, feature and frontend TypeScript types.
+- Verified all three public photo endpoints in Postman.
+- Verified empty category results, the `all` category filter and missing-photo 404 responses.
+- Created and passed 8 Vitest unit tests covering the controller, service, mapper and application controller.
+- Verified successful NestJS and Next.js production builds.
+- Confirmed that the Next.js gallery displays photographs retrieved from PostgreSQL.
+- Selected NordHarbor's visual direction and generated reference mockups for future frontend development.
+- Confirmed Git working tree clean after code commits.
 
 ### Decisions
-- Prefer official framework documentation and CLI generators.
-- Keep Drizzle ORM on its stable release line.
-- Favor readable framework conventions over unnecessary custom abstractions.
-- Permit deliberate destructive resets of disposable local development data.
 
-### Open issues
-- `PhotosService` still uses an in-memory photo array.
-- Database rows must be mapped to the existing API response DTO.
-- Review outstanding `body-parser` and `multer` security advisories using a fresh audit.
-- Investigate the silent `drizzle-kit migrate` failure separately.
-- Study Next.js Suspense and Partial Prerendering in greater depth.
+- Use Drizzle's SQL-like query builder consistently for database operations.
+- Keep database queries in feature services until complexity justifies a repository layer.
+- Infer database types from Drizzle schemas.
+- Keep feature-specific shared types in the feature's `types.ts`.
+- Maintain explicit DTOs and mappers to control public API responses.
+- Preserve `category` as a string and expose selected photographer information as a nested object.
+- Adopt a cinematic Nordic visual identity with dark charcoal surfaces, cold teal accents, immersive nature imagery and restrained editorial typography.
+- Implement frontend design manually in Next.js rather than depending on generated application code.
+
+### Environment and tooling
+
+- PostgreSQL 18 running through Docker Compose.
+- NestJS with `@nestjs/drizzle`.
+- Next.js 16.4.3 with Cache Components and Partial Prerendering.
+- Postman collection created for public photo endpoints.
+- Vitest: 8 passing unit tests.
+- API and frontend production builds passing.
+- No new infrastructure required.
+
+### Outstanding work
+
+- Build the homepage and photography gallery visual design.
+- Implement responsive layouts, reusable components and SCSS Modules.
+- Add real photo preview/image delivery.
+- Add database integration and end-to-end tests.
+- Review dependency security advisories before production.
+- Investigate the direct Drizzle Kit migration CLI failure separately.
+- Revisit Suspense and Partial Prerendering for deeper learning.
 
 ### Exact next step
-Replace `PhotosService.getPhotos()` with a real Drizzle query while preserving the existing API response structure.
 
-Then implement category filtering and slug lookup through PostgreSQL.
+Start Chapter 03: Frontend Design & Experience.
+
+Use the approved NordHarbor homepage mockup to establish typography, color tokens, global styling and page layout.
+
+Implement the homepage incrementally, starting with its navigation and cinematic hero section.
+
+Continue using the existing PostgreSQL-backed API for dynamic photo content.

@@ -238,3 +238,41 @@ Registered customers may purchase digital licenses and access full-resolution ed
 **Why:** Consistent framework conventions, fewer custom abstractions, predictable configuration and understandable data flow.
 
 **Known issue:** `drizzle-kit migrate` exits with code 1 without reporting an error. The programmatic migration runner remains the supported project workaround.
+
+### Decision 013: SQL-like Drizzle queries and feature-local types
+
+**Status:** Accepted
+
+**Decision:**
+- Use Drizzle's SQL-like query builder as the default database query pattern.
+- Use explicit JOINs for related data.
+- Keep database queries in feature services until a repository layer offers a clear benefit.
+- Infer database row types using `$inferSelect` and insertion types using `$inferInsert`.
+- Store shared feature-specific types close to the feature.
+- Keep public DTOs separate from database models.
+- Use mappers to explicitly expose public information.
+
+**Why:** Consistent syntax, traceable SQL behavior, readable services and controlled API contracts.
+
+**Trade-off:** Complex services may eventually justify dedicated repositories or reusable query helpers.
+
+### Decision 014: NordHarbor visual design direction
+
+**Status:** Accepted
+
+**Decision:** Adopt a hybrid visual direction combining cinematic Nordic photography, minimalist editorial design and marketplace functionality.
+
+**Design principles:**
+- Dark charcoal and slate backgrounds.
+- Cold teal-blue accents.
+- Elegant editorial headings with readable sans-serif interface text.
+- Large, immersive wildlife and landscape photography.
+- Minimal visual clutter and restrained animations.
+- Accessible controls and responsive layouts.
+- Reusable design tokens and components.
+
+**Implementation:** Use the approved homepage and supporting page mockups as visual references. Build the frontend incrementally with Next.js, React and SCSS Modules.
+
+**Why:** Create a distinctive photography-first experience while demonstrating frontend engineering and design implementation skills.
+
+**Note:** Generated mockups are design references, not authoritative application code.
