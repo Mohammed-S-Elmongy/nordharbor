@@ -1,38 +1,52 @@
 import { describe, expect, it } from "vitest";
 import { toPhotoResponseDto } from "./photo.mapper.js";
+import type { PhotoWithDetails } from "./types.ts";
 
 describe("toPhotoResponseDto", () => {
-  it("maps public photo fields and excludes private storage fields", () => {
-    const photo = {
-      id: 1,
-      slug: "the-young-king",
-      title: "The young king",
-      description: "A Young lion in the wild.",
-      instagramUrl:
-        "https://www.instagram.com/p/DMTpj4nN6FH/?utm_source=ig_web_copy_link&rpxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
-      category: "wildlife",
-      location: "Norway",
-      camera: "Canon EOS 700D",
-      lens: "Tamron 70-300mm f/4-5.6 Di LD Macro",
-      featured: true,
-      storageKey: "the-young-king.jpg",
+  it("returns only the intended public photo fields", () => {
+    const databaseResult: PhotoWithDetails = {
+      photo: {
+        id: 1,
+        slug: "the-young-king",
+        title: "The Young King",
+        description: "A young lion.",
+        categoryId: 1,
+        photographerId: 1,
+        camera: "Canon EOS R10",
+        lens: null,
+        location: null,
+        instagramUrl: null,
+        featured: false,
+      },
+      categorySlug: "wildlife",
+      photographer: {
+        id: 1,
+        slug: "morgyphoto",
+        displayName: "MorgyPhoto",
+      },
     };
 
-    const result = toPhotoResponseDto(photo);
-    //!expect result to not include individual private fields like storageKey
-    expect(result).not.toHaveProperty("storageKey");
+    const result = toPhotoResponseDto(databaseResult);
+
     expect(result).toEqual({
       id: 1,
       slug: "the-young-king",
-      title: "The young king",
-      description: "A Young lion in the wild.",
-      instagramUrl:
-        "https://www.instagram.com/p/DMTpj4nN6FH/?utm_source=ig_web_copy_link&rpxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+      title: "The Young King",
+      description: "A young lion.",
       category: "wildlife",
-      location: "Norway",
-      camera: "Canon EOS 700D",
-      lens: "Tamron 70-300mm f/4-5.6 Di LD Macro",
-      featured: true,
+      photographer: {
+        slug: "morgyphoto",
+        displayName: "MorgyPhoto",
+      },
+      camera: "Canon EOS R10",
+      lens: null,
+      location: null,
+      instagramUrl: null,
+      featured: false,
     });
+
+    expect(result).not.toHaveProperty("categoryId");
+    expect(result).not.toHaveProperty("photographerId");
+    expect(result.photographer).not.toHaveProperty("id");
   });
 });

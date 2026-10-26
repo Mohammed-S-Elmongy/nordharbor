@@ -27,10 +27,12 @@ export class PhotosController {
     example: "wildlife",
   })
   @ApiOkResponse({ type: PhotoResponseDto, isArray: true })
-  getPhotos(@Query("category") category?: string): PhotoResponseDto[] {
+  async findAll(
+    @Query("category") category?: string,
+  ): Promise<PhotoResponseDto[]> {
     const photos = category
-      ? this.photosService.getPhotosByCategory(category)
-      : this.photosService.getPhotos();
+      ? await this.photosService.findAllByCategory(category)
+      : await this.photosService.findAll();
     return photos.map(toPhotoResponseDto);
   }
   //!==================================================================================
@@ -41,7 +43,8 @@ export class PhotosController {
     type: ErrorResponseDto,
   })
   @ApiOkResponse({ type: PhotoResponseDto })
-  getPhotoBySlug(@Param("slug") slug: string): PhotoResponseDto {
-    return toPhotoResponseDto(this.photosService.getPhotoBySlug(slug));
+  async findOneBySlug(@Param("slug") slug: string): Promise<PhotoResponseDto> {
+    const photo = await this.photosService.findOneBySlug(slug);
+    return toPhotoResponseDto(photo);
   }
 }

@@ -1,12 +1,7 @@
-export type Photo = {
-  id: number;
-  slug: string;
-  title: string;
-  description: string;
-  instagramUrl: string;
-  category: string;
-  location: string;
-  camera: string;
-  lens: string;
-  featured: boolean;
+import type { Photo, Photographer } from "../db/schema.ts";
+
+export type PhotoWithDetails = {
+  photo: Photo;
+  categorySlug: string;
+  photographer: Photographer;
 };

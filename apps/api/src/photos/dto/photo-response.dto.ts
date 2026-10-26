@@ -1,5 +1,19 @@
 import { ApiProperty } from "@nestjs/swagger";
 
+export class PhotographerResponseDto {
+  @ApiProperty({
+    example: "john-doe",
+    description: "The slug of the photographer",
+  })
+  slug!: string;
+
+  @ApiProperty({
+    example: "John Doe",
+    description: "The name of the photographer",
+  })
+  displayName!: string;
+}
+
 export class PhotoResponseDto {
   @ApiProperty({
     example: 1,
@@ -29,19 +43,13 @@ export class PhotoResponseDto {
     example: "https://example.com/photos/1",
     description: "The Instagram URL of the photo",
   })
-  instagramUrl!: string;
-
-  @ApiProperty({
-    example: "Wildlife",
-    description: "The category of the photo",
-  })
-  category!: string;
+  instagramUrl!: string | null;
 
   @ApiProperty({
     example: "Norway",
     description: "The location where the photo was taken",
   })
-  location!: string;
+  location!: string | null;
 
   @ApiProperty({
     example: "Canon EOS R10",
@@ -53,11 +61,22 @@ export class PhotoResponseDto {
     example: "RF100-400mm F4.5-5.6 L IS USM",
     description: "The lens used to take the photo",
   })
-  lens!: string;
+  lens!: string | null;
 
   @ApiProperty({
     example: true,
     description: "Indicates if the photo is featured",
   })
   featured!: boolean;
+
+  @ApiProperty({
+    example: "Wildlife",
+    description: "The category of the photo",
+  })
+  category?: string;
+
+  @ApiProperty({
+    type: () => PhotographerResponseDto,
+  })
+  photographer!: PhotographerResponseDto;
 }

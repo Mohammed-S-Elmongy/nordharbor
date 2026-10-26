@@ -5,6 +5,7 @@ export const categories = pgTable("categories", {
   name: text("name").notNull(),
   slug: text("slug").notNull().unique(),
 });
+export type Category = typeof categories.$inferSelect;
 
 export const photos = pgTable("photos", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
@@ -23,9 +24,11 @@ export const photos = pgTable("photos", {
   instagramUrl: text("instagram_url"),
   featured: boolean("featured").notNull().default(false),
 });
+export type Photo = typeof photos.$inferSelect;
 
 export const photographers = pgTable("photographers", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   displayName: text("display_name").notNull(),
   slug: text("slug").notNull().unique(),
 });
+export type Photographer = typeof photographers.$inferSelect;
