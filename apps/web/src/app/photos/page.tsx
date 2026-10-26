@@ -42,9 +42,11 @@ async function PhotosList({
             <li key={id}>
               <h2>{title}</h2>
               <p>{description}</p>
-              <p>
-                Instagram: <a href={instagramUrl}>{instagramUrl}</a>
-              </p>
+              {instagramUrl && (
+                <p>
+                  Instagram: <a href={instagramUrl}>{instagramUrl}</a>
+                </p>
+              )}
               <p>Category: {photo.category}</p>
               <p>Location: {location}</p>
               <p>Camera: {camera}</p>
