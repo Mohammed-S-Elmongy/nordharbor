@@ -162,61 +162,43 @@ In addition to the existing backend Photos feature:
 - Review unresolved npm security audit findings for `body-parser` and `multer`.
 - Investigate the Drizzle Kit CLI migration failure separately.
 
-## Session checkpoint: 2026-10-26
+## Session checkpoint: 2026-11-01
 
-### Completed
+### Chapter 03: Frontend Design & Experience
 
-- Replaced the hardcoded `PhotosService` array with PostgreSQL queries using Drizzle ORM.
-- Established Drizzle's SQL-like query builder as the default database access convention.
-- Implemented INNER JOINs to retrieve photo, category and photographer information.
-- Preserved the existing public photo API contract.
-- Added public photographer details through the response DTO and mapper.
-- Updated database, feature and frontend TypeScript types.
-- Verified all three public photo endpoints in Postman.
-- Verified empty category results, the `all` category filter and missing-photo 404 responses.
-- Created and passed 8 Vitest unit tests covering the controller, service, mapper and application controller.
-- Verified successful NestJS and Next.js production builds.
-- Confirmed that the Next.js gallery displays photographs retrieved from PostgreSQL.
-- Selected NordHarbor's visual direction and generated reference mockups for future frontend development.
-- Confirmed Git working tree clean after code commits.
+**Completed**
+- Removed the default Next.js homepage and unused starter assets.
+- Established NordHarbor's initial dark visual design tokens.
+- Configured Playfair and Inter with `next/font/google`.
+- Replaced SCSS with native CSS and CSS Modules.
+- Created a shared Header component with a branded home link, navigation and optimized logo image.
+- Adopted App Router colocation for route-specific components and `_components` for shared components.
+- Implemented the homepage Hero component with editorial typography.
+- Added an original Nordic lake photograph as the hero background.
+- Implemented layered CSS gradients for text readability and a gradual bottom fade.
+- Made the hero background extend behind the transparent header.
+- Confirmed the initial hero visually in the browser.
+- Committed the frontend progress to GitHub.
 
-### Decisions
+**Environment and tooling**
+- Next.js 16.4.3 and React 19.3.0.
+- CSS Modules replace SCSS Modules.
+- Sass dependency removed from the web workspace.
+- Frontend production build passed after Sass removal.
+- Latest frontend changes have not yet been independently build-tested.
+- npm reported 16 moderate dependency vulnerabilities requiring investigation.
 
-- Use Drizzle's SQL-like query builder consistently for database operations.
-- Keep database queries in feature services until complexity justifies a repository layer.
-- Infer database types from Drizzle schemas.
-- Keep feature-specific shared types in the feature's `types.ts`.
-- Maintain explicit DTOs and mappers to control public API responses.
-- Preserve `category` as a string and expose selected photographer information as a nested object.
-- Adopt a cinematic Nordic visual identity with dark charcoal surfaces, cold teal accents, immersive nature imagery and restrained editorial typography.
-- Implement frontend design manually in Next.js rather than depending on generated application code.
+**Open issues**
+- Consolidate duplicate global CSS tokens and Hero CSS rules.
+- Revisit header/hero overlap architecture for responsive layouts.
+- Add responsive typography, spacing and navigation.
+- Add hero call-to-action buttons.
+- Review unfinished navigation destinations.
+- Continue homepage sections: categories and featured photos.
+- Review npm audit findings before production.
 
-### Environment and tooling
+**Exact next step**
 
-- PostgreSQL 18 running through Docker Compose.
-- NestJS with `@nestjs/drizzle`.
-- Next.js 16.4.3 with Cache Components and Partial Prerendering.
-- Postman collection created for public photo endpoints.
-- Vitest: 8 passing unit tests.
-- API and frontend production builds passing.
-- No new infrastructure required.
+Clean up the duplicated CSS declarations in `globals.css` and `Hero.module.css`. Then implement the Hero CTA links (`Explore Gallery` and `View Featured`), verify their destinations, and compare spacing against the approved homepage mockup.
 
-### Outstanding work
-
-- Build the homepage and photography gallery visual design.
-- Implement responsive layouts, reusable components and SCSS Modules.
-- Add real photo preview/image delivery.
-- Add database integration and end-to-end tests.
-- Review dependency security advisories before production.
-- Investigate the direct Drizzle Kit migration CLI failure separately.
-- Revisit Suspense and Partial Prerendering for deeper learning.
-
-### Exact next step
-
-Start Chapter 03: Frontend Design & Experience.
-
-Use the approved NordHarbor homepage mockup to establish typography, color tokens, global styling and page layout.
-
-Implement the homepage incrementally, starting with its navigation and cinematic hero section.
-
-Continue using the existing PostgreSQL-backed API for dynamic photo content.
+Continue using the existing PostgreSQL-backed API for real photography content.

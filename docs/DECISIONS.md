@@ -276,3 +276,40 @@ Registered customers may purchase digital licenses and access full-resolution ed
 **Why:** Create a distinctive photography-first experience while demonstrating frontend engineering and design implementation skills.
 
 **Note:** Generated mockups are design references, not authoritative application code.
+
+### Decision 015: Native CSS Modules instead of SCSS
+
+**Status:** Accepted
+
+**Decision:** Use modern CSS and CSS Modules for NordHarbor frontend styling. Remove Sass unless a concrete future requirement justifies reintroducing it.
+
+**Why:**
+- Native CSS supports the variables and nesting currently needed.
+- Next.js supports CSS Modules without additional styling dependencies.
+- Reduces tooling complexity.
+- Favors readable, predictable code over premature abstractions.
+
+**Supersedes:** The SCSS Modules implementation choice in Decision 014. The visual design direction remains unchanged.
+
+### Decision 016: Next.js App Router component colocation
+
+**Status:** Accepted
+
+**Decision:** Keep route-specific components close to their App Router pages. Place genuinely shared components in `app/_components/`.
+
+**Why:**
+- Reuses Next.js's existing project organization.
+- Avoids duplicating the route hierarchy in a separate `features/` directory.
+- Makes related files easier to find.
+- Supports incremental extraction of reusable components.
+
+**Conventions:**
+- `app/page.tsx` remains the homepage entry point.
+- `app/_home/` contains homepage-specific components.
+- `app/photos/` contains photo routes and their route-specific code.
+- `app/_components/` contains shared components such as Header and future Footer components.
+- Use private folders where helpful to distinguish implementation structure from routing.
+
+**Trade-off:** Components shared across several routes may need to move to a shared location as the application evolves.
+
+**Guideline:** Prefer colocating first and extracting shared abstractions when actual reuse becomes clear.
