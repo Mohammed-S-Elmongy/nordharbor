@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./Header.module.css";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+// import { ChevronDown } from "lucide-react";
 
 export default function Header() {
   return (

@@ -1,7 +1,7 @@
 .hero {
   display: flex;
   align-items: center;
-  padding: var(--padding-container);
+  padding: var(--page-gutter);
   width: 100%;
   min-height: 22rem;
 }
@@ -58,8 +58,8 @@
 }
 
 .heroButton:focus-visible {
-  outline: 2px solid var(--color-accent-light);
-  outline-offset: 4px;
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
 }
 
 .primaryButton {
@@ -75,3 +75,4 @@
 .secondaryButton:hover {
   background-color: rgba(143, 198, 213, 0.12);
 }
+
