@@ -162,43 +162,60 @@ In addition to the existing backend Photos feature:
 - Review unresolved npm security audit findings for `body-parser` and `multer`.
 - Investigate the Drizzle Kit CLI migration failure separately.
 
-## Session checkpoint: 2026-11-01
+## Session checkpoint: 2026-11-01 (Chapter 03, continued)
 
-### Chapter 03: Frontend Design & Experience
+### Completed
 
-**Completed**
-- Removed the default Next.js homepage and unused starter assets.
-- Established NordHarbor's initial dark visual design tokens.
-- Configured Playfair and Inter with `next/font/google`.
-- Replaced SCSS with native CSS and CSS Modules.
-- Created a shared Header component with a branded home link, navigation and optimized logo image.
-- Adopted App Router colocation for route-specific components and `_components` for shared components.
-- Implemented the homepage Hero component with editorial typography.
-- Added an original Nordic lake photograph as the hero background.
-- Implemented layered CSS gradients for text readability and a gradual bottom fade.
-- Made the hero background extend behind the transparent header.
-- Confirmed the initial hero visually in the browser.
-- Committed the frontend progress to GitHub.
+- Introduced a Next.js `(home)` route group with its own nested layout.
+- Moved the shared Header into the homepage layout.
+- Separated the photographic background from the Hero component using CSS Grid layering.
+- Removed the earlier negative-margin header/hero overlap.
+- Added `min-width: 0` to the homepage Grid content to prevent horizontal overflow from affecting sibling components.
+- Completed primary and secondary Hero CTAs with Lucide icons, hover transitions and keyboard focus styling.
+- Introduced CategoryNavigation with typed category definitions and dynamic Lucide components.
+- Implemented five category links: All, Wildlife, Landscapes, Astro and Macro.
+- Added responsive category navigation using a horizontally scrollable CSS Grid.
+- Experimented with decorative navigation arrows, then returned to the Gutendex-inspired scrolling approach after visual testing.
+- Implemented a brief CSS animation indicating horizontal scrollability.
+- Added reduced-motion support for the animation.
+- Consolidated commonly reused CSS values into global design tokens.
+- Tested the homepage visually at desktop and mobile viewport widths.
+- Committed the work to GitHub.
 
-**Environment and tooling**
-- Next.js 16.4.3 and React 19.3.0.
-- CSS Modules replace SCSS Modules.
-- Sass dependency removed from the web workspace.
-- Frontend production build passed after Sass removal.
-- Latest frontend changes have not yet been independently build-tested.
-- npm reported 16 moderate dependency vulnerabilities requiring investigation.
+### Decisions
 
-**Open issues**
-- Consolidate duplicate global CSS tokens and Hero CSS rules.
-- Revisit header/hero overlap architecture for responsive layouts.
-- Add responsive typography, spacing and navigation.
-- Add hero call-to-action buttons.
-- Review unfinished navigation destinations.
-- Continue homepage sections: categories and featured photos.
-- Review npm audit findings before production.
+- Keep CategoryNavigation as a Server Component. Native CSS scrolling currently meets our needs without client-side JavaScript.
+- Use CSS Grid for desktop category layout and horizontal scrolling on smaller screens.
+- Use a small set of reusable global CSS tokens rather than introducing excessive abstraction.
+- Prefer real device and viewport testing over assuming a technically valid layout is good UX.
+- Defer hamburger navigation and full responsive polish until the next appropriate frontend milestone.
 
-**Exact next step**
+### Tooling
 
-Clean up the duplicated CSS declarations in `globals.css` and `Hero.module.css`. Then implement the Hero CTA links (`Explore Gallery` and `View Featured`), verify their destinations, and compare spacing against the approved homepage mockup.
+- Lucide React is used for navigation and CTA icons.
+- Native CSS Modules remain the styling approach.
+- No additional frontend dependencies or infrastructure were introduced for the scrolling category navigation.
 
-Continue using the existing PostgreSQL-backed API for real photography content.
+### Known issues
+
+- Remove unused chevron imports.
+- Clean up the redundant `.categoryItem:focus-visible` rule.
+- Test category scroll snapping and animation across mobile browsers.
+- Confirm keyboard focus visibility during horizontal navigation.
+- Implement the missing `#featured` destination.
+- Establish a background boundary before adding more homepage sections.
+- Run frontend lint and production build after the latest changes.
+- Review outstanding dependency security findings.
+
+### Exact next step
+
+**Chapter 03: Featured Photos**
+
+1. Perform a brief CategoryNavigation cleanup.
+2. Create the homepage FeaturedPhotos component with `id="featured"`.
+3. Reuse the existing frontend photo types and API-fetching utilities.
+4. Learn Next.js Server Component data fetching and Suspense through the implementation.
+5. Render real PostgreSQL-backed photographs using a reusable PhotoCard.
+6. Style the initial responsive photo grid against the approved mockup.
+
+Continue the learn-while-building workflow, with concise React/CSS explanations and deeper teaching for new Next.js concepts.

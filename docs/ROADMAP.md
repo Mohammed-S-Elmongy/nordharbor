@@ -211,7 +211,7 @@ A visitor can browse NordHarbor as a real photography website even though the da
 
 ## Next step
 
-Replace hardcoded photo data with persistent storage.
+Complete the homepage Featured Photos section using the PostgreSQL-backed photo API, then refine responsive gallery navigation and image presentation.
 
 ---
 
@@ -845,7 +845,19 @@ GET /photos
 GET /photos?category=...
 GET /photos/:slug
 ↓
-hardcoded photo metadata
+PostgreSQL 18
+    ↓
+Drizzle ORM
+    ↓
+PhotosService
+    ↓
+PhotosController
+    ↓
+GET /photos
+GET /photos?category=...
+GET /photos/:slug
+    ↓
+Next.js photography pages
 ```
 
 Individual missing resources return `404 Not Found`.

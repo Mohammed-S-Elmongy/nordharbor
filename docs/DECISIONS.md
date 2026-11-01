@@ -313,3 +313,17 @@ Registered customers may purchase digital licenses and access full-resolution ed
 **Trade-off:** Components shared across several routes may need to move to a shared location as the application evolves.
 
 **Guideline:** Prefer colocating first and extracting shared abstractions when actual reuse becomes clear.
+
+**Implementation update, 2026-11-01:**
+
+The homepage now uses the `(home)` route group.
+
+- `app/(home)/page.tsx` serves `/`.
+- `app/(home)/layout.tsx` owns homepage-specific presentation and the Header.
+- `app/(home)/_components/` contains Hero and CategoryNavigation.
+- `app/_components/` contains genuinely shared UI and layout components.
+- The root layout continues to own fonts, metadata, global styling and the HTML document.
+
+The route group does not change the homepage URL. This supersedes the earlier `app/page.tsx` and `app/_home/` conventions within Decision 016.
+
+The photographic background is implemented through overlapping CSS Grid layers. The layout will be revisited when additional homepage sections require a clear separation from the introductory background.
