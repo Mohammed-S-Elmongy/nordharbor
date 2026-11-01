@@ -14,8 +14,8 @@
   --focus-offset: 4px;
 
   /* Layout */
-   --page-gutter: clamp(1rem, 3vw, 3rem);
-  --content-max-width: 1400px
+  --page-gutter: clamp(1rem, 3vw, 3rem);
+  --content-max-width: 1400px;
 
   /* Transitions */
   --transition-fast: 250ms ease-in-out;
@@ -55,12 +55,8 @@ h6 {
   font-family: var(--font-heading), Georgia, serif;
 }
 
-
 .container {
-  width: min(
-    calc(100% - 2 * var(--page-gutter)),
-    var(--content-max-width)
-  );
+  width: min(calc(100% - 2 * var(--page-gutter)), var(--content-max-width));
   margin-inline: auto;
 }
 

@@ -8,6 +8,8 @@ import {
   MountainSnow,
   PawPrint,
   Snail,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function CategoryNavigation(): JSX.Element {
@@ -45,7 +47,10 @@ export default function CategoryNavigation(): JSX.Element {
   ];
 
   return (
-    <nav aria-label="Photo categories">
+    <nav
+      aria-label="Photo categories"
+      className={styles.categoryNavWrapper}
+    >
       <ul className={styles.categoryNav}>
         {categories.map((category) => {
           const { icon, label, description, href } = category;

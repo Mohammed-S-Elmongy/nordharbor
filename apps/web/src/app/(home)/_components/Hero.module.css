@@ -76,27 +76,25 @@
 }
 
 @media (max-width: 768px) {
-.title{
-  font-size: 0.5rem;
-}
+  .title {
+    font-size: 0.5rem;
+  }
   .heading {
     font-size: 2rem;
   }
   .description {
     font-size: 0.85rem;
   }
-  .actions{
+  .actions {
     max-width: 100%;
     justify-content: space-between;
   }
-  .heroButton{
+  .heroButton {
     padding: 0.65rem 1.2rem;
     font-size: 0.95rem;
-    
   }
-  .secondaryButton{
+  .secondaryButton {
     background-color: rgba(143, 198, 213, 0.25);
     text-shadow: 0 1px 2px black;
   }
-
 }
