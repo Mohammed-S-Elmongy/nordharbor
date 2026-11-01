@@ -1,8 +1,13 @@
+import Header from "./_components/layout/Header";
+import Hero from "./_home/Hero";
+
 export default function HomePage() {
   return (
-    <main>
-      <h1>NordHarbor</h1>
-      <p>Photography for a wilder world.</p>
-    </main>
+    <>
+      <Header />
+      <main>
+        <Hero />
+      </main>
+    </>
   );
 }

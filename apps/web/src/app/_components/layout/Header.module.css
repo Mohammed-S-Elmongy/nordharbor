@@ -1,0 +1,24 @@
+.header {
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 3rem;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+.headerLogo {
+  width: 6rem;
+  height: auto;
+}
+
+.headerNav {
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+}

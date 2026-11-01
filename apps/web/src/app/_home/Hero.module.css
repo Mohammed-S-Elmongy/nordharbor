@@ -1,0 +1,51 @@
+.hero {
+  width: 100%;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  padding: 3rem;
+  min-height: 38rem;
+  margin-top: -6rem;
+  padding-top: 6rem;
+}
+.hero {
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent 55%,
+      var(--color-background) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(8, 14, 18, 0.85),
+      rgba(8, 14, 18, 0.2)
+    ),
+    url("/home-hero-lake.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.content {
+  max-width: 550px;
+}
+.title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+.heading {
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 1rem 0;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  letter-spacing: normal;
+  color: var(--color-text);
+}
