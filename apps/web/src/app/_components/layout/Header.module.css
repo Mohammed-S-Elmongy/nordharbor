@@ -1,9 +1,10 @@
 .header {
-  height: 6rem;
+  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-inline: var(--page-gutter);
+  padding-block: 1rem;
   position: relative;
   z-index: 2;
   background: transparent;
@@ -21,12 +22,4 @@
     gap: 2rem;
     list-style: none;
   }
-}
-
-.headerNavCategory {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: inherit;
 }

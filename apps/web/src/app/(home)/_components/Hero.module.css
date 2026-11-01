@@ -3,7 +3,7 @@
   align-items: center;
   padding: var(--page-gutter);
   width: 100%;
-  min-height: 22rem;
+  height: fit-content;
 }
 
 .content {
@@ -34,7 +34,6 @@
   align-items: center;
   gap: 1rem;
   margin-top: 2rem;
-  flex-wrap: wrap;
 }
 
 .heroButton {
@@ -76,3 +75,28 @@
   background-color: rgba(143, 198, 213, 0.12);
 }
 
+@media (max-width: 768px) {
+.title{
+  font-size: 0.5rem;
+}
+  .heading {
+    font-size: 2rem;
+  }
+  .description {
+    font-size: 0.85rem;
+  }
+  .actions{
+    max-width: 100%;
+    justify-content: space-between;
+  }
+  .heroButton{
+    padding: 0.65rem 1.2rem;
+    font-size: 0.95rem;
+    
+  }
+  .secondaryButton{
+    background-color: rgba(143, 198, 213, 0.25);
+    text-shadow: 0 1px 2px black;
+  }
+
+}

@@ -24,8 +24,11 @@ export default function Header() {
       >
         <ul>
           <li>
-            <Link href="/photos" className={styles.headerNavCategory}>
-              Gallery 
+            <Link
+              href="/photos"
+              className={styles.navLinkCategory}
+            >
+              Gallery
               {/* <ChevronDown size={18} strokeWidth={1.5} aria-hidden="true" /> */}
             </Link>
           </li>
