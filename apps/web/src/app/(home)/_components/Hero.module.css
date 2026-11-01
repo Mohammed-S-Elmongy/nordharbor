@@ -1,34 +1,13 @@
 .hero {
-  width: 100%;
-  min-height: 450px;
   display: flex;
   align-items: center;
-  padding: 3rem;
-  min-height: 38rem;
-  margin-top: -6rem;
-  padding-top: 6rem;
-}
-.hero {
-  background-image:
-    linear-gradient(
-      to bottom,
-      transparent 55%,
-      var(--color-background) 100%
-    ),
-    linear-gradient(
-      to right,
-      rgba(8, 14, 18, 0.85),
-      rgba(8, 14, 18, 0.2)
-    ),
-    url("/home-hero-lake.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  padding: var(--padding-container);
+  width: 100%;
+  min-height: 22rem;
 }
 
 .content {
-  max-width: 550px;
+  max-width: 35rem;
 }
 .title {
   font-size: 0.75rem;
@@ -48,4 +27,51 @@
   line-height: 1.6;
   letter-spacing: normal;
   color: var(--color-text);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.heroButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.5rem;
+  gap: 0.5rem;
+
+  border: 2px solid var(--color-accent);
+  border-radius: 0.5rem;
+
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.heroButton:focus-visible {
+  outline: 2px solid var(--color-accent-light);
+  outline-offset: 4px;
+}
+
+.primaryButton {
+  background: var(--color-accent);
+}
+
+.primaryButton:hover {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent-light);
+  color: var(--color-background);
+}
+
+.secondaryButton:hover {
+  background-color: rgba(143, 198, 213, 0.12);
 }

@@ -1,23 +1,23 @@
 :root {
-  --color-background: #080e12;
-  --color-surface: #111b21;
-  --color-elevated: #1d303a;
-
-  --color-accent: #34778a;
-  --color-accent-light: #8fc6d5;
-
-  --color-text: #edf3f5;
-}
-:root {
   color-scheme: dark;
+
+  /* Colors */
   --color-background: #080e12;
   --color-surface: #111b21;
   --color-elevated: #1d303a;
-
   --color-accent: #34778a;
   --color-accent-light: #8fc6d5;
-
   --color-text: #edf3f5;
+
+  /* Focus */
+  --focus-outline: 2px solid var(--color-accent);
+  --focus-offset: 4px;
+
+  /* Layout */
+  --padding-container: 3rem;
+
+  /* Transitions */
+  --transition-fast: 250ms ease-in-out;
 }
 
 html {
@@ -55,7 +55,7 @@ h6 {
 }
 
 .container {
-  width: min(100% - 3rem, 1400px);
+  width: min(100% - var(--padding-container), 1400px);
   margin-inline: auto;
 }
 

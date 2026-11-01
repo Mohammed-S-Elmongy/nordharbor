@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./Header.module.css";
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 
 export default function Header() {
   return (
@@ -23,7 +24,10 @@ export default function Header() {
       >
         <ul>
           <li>
-            <Link href="/photos">Gallery</Link>
+            <Link href="/photos" className={styles.headerNavCategory}>
+              Gallery 
+              {/* <ChevronDown size={18} strokeWidth={1.5} aria-hidden="true" /> */}
+            </Link>
           </li>
         </ul>
       </nav>

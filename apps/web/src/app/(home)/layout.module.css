@@ -1,0 +1,36 @@
+.homeLayout {
+  display: grid;
+}
+
+.background,
+.content {
+  grid-area: 1 / 1;
+}
+
+.background {
+  min-height: 44rem;
+
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent 75%,
+      var(--color-background) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(8, 14, 18, 0.85),
+      rgba(8, 14, 18, 0)
+    ),
+    url("/home-hero-lake.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}

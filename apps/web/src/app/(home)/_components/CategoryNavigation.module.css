@@ -1,0 +1,47 @@
+.categoryNav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  list-style: none;
+  padding: var(--padding-container);
+}
+.categoryItem {
+  min-width: 0;
+  border: 1px solid var(--color-elevated);
+  background-color: var(--color-surface);
+  border-radius: 0.5rem;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+.categoryItem:hover,
+.categoryItem:focus-within {
+  border-color: var(--color-accent);
+}
+.categoryLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+  min-height: 4.5rem;
+}
+
+.categoryIcon {
+  flex-shrink: 0;
+}
+
+.categoryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.categoryLabel {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.categoryDescription {
+  color: var(--color-accent-light);
+  font-size: 0.75rem;
+}

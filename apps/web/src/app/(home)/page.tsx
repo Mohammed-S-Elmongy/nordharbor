@@ -1,12 +1,12 @@
-import Header from "../_components/layout/Header";
 import Hero from "./_components/Hero";
+import CategoryNavigation from "./_components/CategoryNavigation";
 
 export default function HomePage() {
   return (
     <>
-      <Header />
       <main>
         <Hero />
+        <CategoryNavigation />
       </main>
     </>
   );
