@@ -2,15 +2,7 @@ import type { Category } from "./types";
 import type { JSX } from "react";
 import Link from "next/link";
 import styles from "./CategoryNavigation.module.css";
-import {
-  Blocks,
-  Galaxy,
-  MountainSnow,
-  PawPrint,
-  Snail,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Blocks, Galaxy, MountainSnow, PawPrint, Snail } from "lucide-react";
 
 export default function CategoryNavigation(): JSX.Element {
   const categories: Category[] = [
