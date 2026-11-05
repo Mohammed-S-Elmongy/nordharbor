@@ -6,6 +6,7 @@ export type Photo = {
   title: string;
   description: string;
   instagramUrl: string | null;
+  previewUrl: string | null;
   location: string | null;
   camera: string;
   lens: string | null;
