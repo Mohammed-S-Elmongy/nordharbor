@@ -22,6 +22,7 @@ export const photos = pgTable("photos", {
   lens: text("lens"), // Optional because phones and compact cameras may not have a separately specified lens.
   location: text("location"),
   instagramUrl: text("instagram_url"),
+  previewUrl: text("preview_url"),
   featured: boolean("featured").notNull().default(false),
 });
 export type Photo = typeof photos.$inferSelect;

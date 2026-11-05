@@ -15,6 +15,13 @@
       "when": 1792860815406,
       "tag": "0001_add_photographers_and_photos",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793833010838,
+      "tag": "0002_amusing_polaris",
+      "breakpoints": true
     }
   ]
 }

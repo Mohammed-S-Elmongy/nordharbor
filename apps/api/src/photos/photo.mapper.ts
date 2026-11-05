@@ -10,6 +10,7 @@ export function toPhotoResponseDto(result: PhotoWithDetails): PhotoResponseDto {
     title: photo.title,
     description: photo.description,
     instagramUrl: photo.instagramUrl,
+    previewUrl: photo.previewUrl,
     location: photo.location,
     camera: photo.camera,
     lens: photo.lens,

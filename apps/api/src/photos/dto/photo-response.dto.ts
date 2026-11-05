@@ -46,6 +46,13 @@ export class PhotoResponseDto {
   instagramUrl!: string | null;
 
   @ApiProperty({
+    example: "/photos/the-young-king.webp",
+    description: "Public URL path of the photograph preview",
+    nullable: true,
+  })
+  previewUrl!: string | null;
+
+  @ApiProperty({
     example: "Norway",
     description: "The location where the photo was taken",
   })
