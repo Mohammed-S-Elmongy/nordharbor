@@ -1,39 +1,35 @@
 .photoCard {
-position: relative;
-aspect-ratio: 4 / 3;
-overflow: hidden;
-border: 1px solid var(--color-elevated);
-border-radius: 0.5rem;
-background-color: var(--color-surface);
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--color-elevated);
+  border-radius: 0.5rem;
+  background-color: var(--color-surface);
 }
 
 .photoCard::after {
-content: "";
-position: absolute;
-inset: 30% 0 0;
-background: linear-gradient(
-to bottom,
-transparent,
-rgba(8, 14, 18, 0.95)
-);
-pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 30% 0 0;
+  background: linear-gradient(to bottom, transparent, rgba(8, 14, 18, 0.95));
+  pointer-events: none;
 }
 
 .photoImage {
-position: absolute;
-inset: 0;
-width: 100%;
-height: 100%;
-object-fit: cover;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cardContent {
-position: absolute;
-bottom: 0;
-left: 0;
-right: 0;
-z-index: 1;
-padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 1rem;
 }
 
 .featuredBadge {
