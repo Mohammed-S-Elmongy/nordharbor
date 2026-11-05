@@ -162,60 +162,56 @@ In addition to the existing backend Photos feature:
 - Review unresolved npm security audit findings for `body-parser` and `multer`.
 - Investigate the Drizzle Kit CLI migration failure separately.
 
-## Session checkpoint: 2026-11-01 (Chapter 03, continued)
+## Session checkpoint: 2026-11-05
 
 ### Completed
 
-- Introduced a Next.js `(home)` route group with its own nested layout.
-- Moved the shared Header into the homepage layout.
-- Separated the photographic background from the Hero component using CSS Grid layering.
-- Removed the earlier negative-margin header/hero overlap.
-- Added `min-width: 0` to the homepage Grid content to prevent horizontal overflow from affecting sibling components.
-- Completed primary and secondary Hero CTAs with Lucide icons, hover transitions and keyboard focus styling.
-- Introduced CategoryNavigation with typed category definitions and dynamic Lucide components.
-- Implemented five category links: All, Wildlife, Landscapes, Astro and Macro.
-- Added responsive category navigation using a horizontally scrollable CSS Grid.
-- Experimented with decorative navigation arrows, then returned to the Gutendex-inspired scrolling approach after visual testing.
-- Implemented a brief CSS animation indicating horizontal scrollability.
-- Added reduced-motion support for the animation.
-- Consolidated commonly reused CSS values into global design tokens.
-- Tested the homepage visually at desktop and mobile viewport widths.
-- Committed the work to GitHub.
+- Implemented FeaturedPhotos as an asynchronous Next.js Server Component.
+- Added a Suspense boundary for asynchronous homepage data.
+- Connected FeaturedPhotos to the existing PostgreSQL-backed NestJS Photos API.
+- Implemented featured-photo filtering using the existing `featured` flag.
+- Added the nullable `preview_url` column through Drizzle migration `0002_amusing_polaris.sql`.
+- Applied the migration and assigned a preview URL to The Young King.
+- Updated the backend DTO, mapper and frontend Photo type.
+- Added the first optimized WebP preview under `apps/web/public/photos/`.
+- Rendered the image using Next.js Image.
+- Created a reusable PhotoCard component.
+- Implemented a photographic card with a dark gradient, metadata overlay, Featured badge and category label.
+- Implemented a responsive Featured Photos Grid with four, two and one-column layouts.
+- Added the section heading and View All Photos navigation.
+- Aligned the section heading and grid using the shared container.
+- Committed the implementation to GitHub.
 
 ### Decisions
 
-- Keep CategoryNavigation as a Server Component. Native CSS scrolling currently meets our needs without client-side JavaScript.
-- Use CSS Grid for desktop category layout and horizontal scrolling on smaller screens.
-- Use a small set of reusable global CSS tokens rather than introducing excessive abstraction.
-- Prefer real device and viewport testing over assuming a technically valid layout is good UX.
-- Defer hamburger navigation and full responsive polish until the next appropriate frontend milestone.
+- Follow the approved homepage mockup as closely as practical.
+- Use uniform 4:3 cards in the Featured Photos section.
+- Keep original photographic composition considerations separate from gallery card presentation.
+- Use public optimized previews while keeping future full-resolution licensed downloads private.
+- Reuse PhotoCard across the homepage and future gallery views.
 
-### Tooling
+### Environment and tooling
 
-- Lucide React is used for navigation and CTA icons.
-- Native CSS Modules remain the styling approach.
-- No additional frontend dependencies or infrastructure were introduced for the scrolling category navigation.
+- Added no new application dependencies.
+- Drizzle migration `0002_amusing_polaris.sql` applied successfully.
+- PostgreSQL remains hosted through Docker Compose.
+- Added the first real public photo-preview asset.
 
-### Known issues
+### Outstanding work
 
-- Remove unused chevron imports.
-- Clean up the redundant `.categoryItem:focus-visible` rule.
-- Test category scroll snapping and animation across mobile browsers.
-- Confirm keyboard focus visibility during horizontal navigation.
-- Implement the missing `#featured` destination.
-- Establish a background boundary before adding more homepage sections.
-- Run frontend lint and production build after the latest changes.
-- Review outstanding dependency security findings.
+- Refine PhotoCard typography, image cropping, overlays and spacing against the mockup.
+- Add navigation from PhotoCard to its corresponding photo detail page.
+- Consider a dedicated image focal point for controlled card cropping.
+- Review image accessibility and accurate intrinsic dimensions.
+- Centralize API configuration and reusable fetching logic.
+- Consider moving featured filtering to the backend as the photo collection grows.
+- Improve loading and error states.
+- Add database seed data for repeatable development.
+- Run lint, tests and production build.
+- Continue responsive testing.
 
 ### Exact next step
 
-**Chapter 03: Featured Photos**
+Continue Chapter 03 by polishing Featured Photos against the approved mockup, then reuse PhotoCard on the main Gallery page.
 
-1. Perform a brief CategoryNavigation cleanup.
-2. Create the homepage FeaturedPhotos component with `id="featured"`.
-3. Reuse the existing frontend photo types and API-fetching utilities.
-4. Learn Next.js Server Component data fetching and Suspense through the implementation.
-5. Render real PostgreSQL-backed photographs using a reusable PhotoCard.
-6. Style the initial responsive photo grid against the approved mockup.
-
-Continue the learn-while-building workflow, with concise React/CSS explanations and deeper teaching for new Next.js concepts.
+Keep implementation incremental and explain important Next.js and CSS behavior while building.
