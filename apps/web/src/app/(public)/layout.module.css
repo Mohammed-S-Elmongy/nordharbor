@@ -1,0 +1,24 @@
+.publicLayout {
+  display: grid;
+  --header-clearance: 6rem;
+}
+
+.headerLayer,
+.pageLayer {
+  grid-area: 1 / 1;
+}
+
+.headerLayer {
+  align-self: start;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.headerLayer > * {
+  pointer-events: auto;
+}
+
+.pageLayer {
+  min-width: 0;
+}

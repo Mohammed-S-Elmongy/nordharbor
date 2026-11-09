@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   padding: var(--page-gutter);
+  padding-top: var(--header-clearance);
   width: 100%;
   height: fit-content;
 }

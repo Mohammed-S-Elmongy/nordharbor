@@ -1,6 +1,6 @@
 import Link from "next/link";
-import PhotoCard from "../../_components/photos/PhotoCard";
-import type { Photo } from "../../photos/types.ts";
+import PhotoCard from "../../../_components/photos/PhotoCard";
+import type { Photo } from "../../photos/types";
 import styles from "./FeaturedPhotos.module.css";
 import { ArrowRight } from "lucide-react";
 

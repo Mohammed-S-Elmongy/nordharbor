@@ -7,6 +7,19 @@
   background-color: var(--color-surface);
 }
 
+.cardLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cardLink:focus-visible {
+  outline: 2px solid var(--color-accent-light);
+  outline-offset: -3px;
+  border-radius: inherit;
+}
+
+/* Gradient overlay for photo card */
 .photoCard::after {
   content: "";
   position: absolute;
