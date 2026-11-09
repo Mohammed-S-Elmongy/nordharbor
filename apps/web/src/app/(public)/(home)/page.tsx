@@ -1,4 +1,4 @@
-import { Suspense } from "react"; 
+import { Suspense } from "react";
 import Hero from "./_components/Hero";
 import CategoryNavigation from "./_components/CategoryNavigation";
 import FeaturedPhotos from "./_components/FeaturedPhotos";

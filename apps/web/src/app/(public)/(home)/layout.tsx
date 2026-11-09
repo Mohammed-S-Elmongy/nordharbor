@@ -12,9 +12,7 @@ export default function HomeLayout({
         aria-hidden="true"
       />
 
-      <div className={styles.content}>
-        {children}
-      </div>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 }
