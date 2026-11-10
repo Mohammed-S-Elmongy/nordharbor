@@ -14,8 +14,6 @@ type GallerySidebarProps = { activeCategory: string };
 export default function GallerySidebar({
   activeCategory,
 }: GallerySidebarProps) {
-  
-
   return (
     <aside aria-label="Gallery filters">
       <h2>Categories</h2>

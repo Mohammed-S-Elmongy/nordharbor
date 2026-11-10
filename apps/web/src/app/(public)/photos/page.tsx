@@ -12,10 +12,10 @@ async function GalleryContent({
   const { category } = await searchParams;
   const activeCategory = category?.trim().toLowerCase() || "all";
 
-const url =
-  activeCategory === "all" ?
-    "http://localhost:3001/photos"
-  : `http://localhost:3001/photos?category=${encodeURIComponent(activeCategory)}`;
+  const url =
+    activeCategory === "all" ?
+      "http://localhost:3001/photos"
+    : `http://localhost:3001/photos?category=${encodeURIComponent(activeCategory)}`;
 
   const result = await fetch(url);
 
@@ -55,17 +55,17 @@ export default function PhotosPage({
   searchParams: Promise<{ category?: string }>;
 }) {
   return (
-      <main className={styles.galleryPage}>
-        <div className="container">
-          <header className={styles.galleryHeader}>
-            <h1>Explore Photography</h1>
-            <p>Discover extraordinary moments from the natural world.</p>
-          </header>
+    <main className={styles.galleryPage}>
+      <div className="container">
+        <header className={styles.galleryHeader}>
+          <h1>Explore Photography</h1>
+          <p>Discover extraordinary moments from the natural world.</p>
+        </header>
 
-          <Suspense fallback={<p>Loading photos...</p>}>
-            <GalleryContent searchParams={searchParams} />
-          </Suspense>
-        </div>
-      </main>
+        <Suspense fallback={<p>Loading photos...</p>}>
+          <GalleryContent searchParams={searchParams} />
+        </Suspense>
+      </div>
+    </main>
   );
 }
