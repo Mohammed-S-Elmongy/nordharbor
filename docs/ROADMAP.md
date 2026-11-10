@@ -866,6 +866,25 @@ Filtered collections with no matches return an empty array.
 
 Swagger/OpenAPI discovers the endpoints, but richer API documentation remains a planned Phase 1 task.
 
+### Phase 1 frontend progress: 2026-11-10
+
+- [x] Homepage Hero and category navigation.
+- [x] PostgreSQL-backed Featured Photos.
+- [x] Public image previews using Next.js Image.
+- [x] Reusable PhotoCard.
+- [x] Shared public Header and route-group layouts.
+- [x] Gallery with responsive photo grid.
+- [x] URL-driven category filtering.
+- [x] Gallery sidebar with active category styling.
+- [x] Results count and empty state.
+- [x] Suspense boundary for asynchronous Gallery content.
+- [ ] Visual polish against approved mockups.
+- [ ] Complete mobile Gallery presentation.
+- [ ] Refine photo detail page.
+- [ ] Validate lint, tests and production build.
+
+**Next milestone:** Visual polish of Gallery and Featured Photos on desktop and mobile.
+
 ## Exact next step
 
 ### Phase 2 progress: 2026-10-26

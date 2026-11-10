@@ -162,56 +162,54 @@ In addition to the existing backend Photos feature:
 - Review unresolved npm security audit findings for `body-parser` and `multer`.
 - Investigate the Drizzle Kit CLI migration failure separately.
 
-## Session checkpoint: 2026-11-05
+## Session checkpoint: 2026-11-10
 
 ### Completed
 
-- Implemented FeaturedPhotos as an asynchronous Next.js Server Component.
-- Added a Suspense boundary for asynchronous homepage data.
-- Connected FeaturedPhotos to the existing PostgreSQL-backed NestJS Photos API.
-- Implemented featured-photo filtering using the existing `featured` flag.
-- Added the nullable `preview_url` column through Drizzle migration `0002_amusing_polaris.sql`.
-- Applied the migration and assigned a preview URL to The Young King.
-- Updated the backend DTO, mapper and frontend Photo type.
-- Added the first optimized WebP preview under `apps/web/public/photos/`.
-- Rendered the image using Next.js Image.
-- Created a reusable PhotoCard component.
-- Implemented a photographic card with a dark gradient, metadata overlay, Featured badge and category label.
-- Implemented a responsive Featured Photos Grid with four, two and one-column layouts.
-- Added the section heading and View All Photos navigation.
-- Aligned the section heading and grid using the shared container.
-- Committed the implementation to GitHub.
+- Introduced the `(public)` route group with a shared Header across public pages.
+- Kept the homepage's Nordic lake background inside its own `(home)` layout.
+- Introduced shared Header clearance to prevent content overlap.
+- Made PhotoCard navigable through `/photos/[slug]`.
+- Reused PhotoCard in the Gallery.
+- Implemented responsive Gallery grid layout.
+- Created GallerySidebar with category navigation.
+- Added active category highlighting and `aria-current`.
+- Preserved URL-driven filtering through `searchParams`.
+- Added Gallery heading, introduction and results count.
+- Grouped asynchronous filtering and results in GalleryContent under Suspense.
+- Added a no-results message.
+- Verified the Gallery manually and committed the application code.
 
 ### Decisions
 
-- Follow the approved homepage mockup as closely as practical.
-- Use uniform 4:3 cards in the Featured Photos section.
-- Keep original photographic composition considerations separate from gallery card presentation.
-- Use public optimized previews while keeping future full-resolution licensed downloads private.
-- Reuse PhotoCard across the homepage and future gallery views.
+- Keep the root layout responsible for document structure, fonts and global styles.
+- Use `(public)` for shared public presentation and `(home)` for homepage-specific visuals.
+- Use URL-driven single-category filtering without client-side React state.
+- Prefer category links over checkboxes until multiple selection is supported.
+- Defer resizable sidebar, animations and advanced filtering.
+- Follow the approved mockups while keeping the component architecture readable and reusable.
 
 ### Environment and tooling
 
-- Added no new application dependencies.
-- Drizzle migration `0002_amusing_polaris.sql` applied successfully.
-- PostgreSQL remains hosted through Docker Compose.
-- Added the first real public photo-preview asset.
+- No new dependencies or infrastructure changes.
+- Continued using Next.js 16, React, CSS Modules, NestJS, Drizzle and PostgreSQL.
+- Latest reviewed application commit: `a9ca0d9`.
+- Lint, tests and production build were not independently rerun.
 
-### Outstanding work
+### Open items
 
-- Refine PhotoCard typography, image cropping, overlays and spacing against the mockup.
-- Add navigation from PhotoCard to its corresponding photo detail page.
-- Consider a dedicated image focal point for controlled card cropping.
-- Review image accessibility and accurate intrinsic dimensions.
-- Centralize API configuration and reusable fetching logic.
-- Consider moving featured filtering to the backend as the photo collection grows.
-- Improve loading and error states.
-- Add database seed data for repeatable development.
+- Visual polish of Gallery, sidebar and Featured Photos.
+- Responsive layout verification at desktop and 375px.
+- Refine PhotoCard typography, overlays, image cropping and spacing.
+- Improve mobile sidebar presentation.
+- Centralize duplicated frontend API requests and configuration.
+- Review Header clearance across screen sizes.
+- Clean up minor JSX formatting.
+- Improve loading/error states and photo details.
 - Run lint, tests and production build.
-- Continue responsive testing.
 
 ### Exact next step
 
-Continue Chapter 03 by polishing Featured Photos against the approved mockup, then reuse PhotoCard on the main Gallery page.
+**Chapter 03: Visual polish**
 
-Keep implementation incremental and explain important Next.js and CSS behavior while building.
+Compare the Gallery and Featured Photos against the approved NordHarbor mockups. Begin with Gallery sidebar styling, page spacing, typography and PhotoCard proportions. Preserve existing navigation and URL-driven filtering.

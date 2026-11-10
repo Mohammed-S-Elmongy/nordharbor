@@ -327,3 +327,28 @@ The homepage now uses the `(home)` route group.
 The route group does not change the homepage URL. This supersedes the earlier `app/page.tsx` and `app/_home/` conventions within Decision 016.
 
 The photographic background is implemented through overlapping CSS Grid layers. The layout will be revisited when additional homepage sections require a clear separation from the introductory background.
+
+### Decision 017: Public layouts and URL-driven Gallery filtering
+
+**Status:** Accepted
+
+**Decision:**
+
+- Keep the root layout focused on HTML structure, fonts and global styles.
+- Use `app/(public)/layout.tsx` for the shared public Header.
+- Use `app/(public)/(home)/layout.tsx` for homepage-specific visuals.
+- Keep Gallery filtering driven by URL search parameters.
+- Use ordinary links with an active visual state for single-category filtering.
+- Place asynchronous GalleryContent inside a Suspense boundary.
+
+**Why:**
+
+Maintain clear layout responsibilities, avoid unnecessary Client Components, preserve shareable filtered URLs and reuse components across public pages.
+
+**Trade-offs:**
+
+- The overlapping Header currently requires responsive clearance spacing.
+- Category definitions are duplicated between the homepage and Gallery.
+- Advanced filtering and interactive sidebar behavior remain future work.
+
+**Supersedes:** The earlier homepage-specific Header placement in Decision 016. The component-colocation principle remains unchanged.
